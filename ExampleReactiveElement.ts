@@ -1,7 +1,7 @@
 import { ReactiveElement, produceReactiveElement } from "./ReactiveElement";
-import { div } from "./DivElement";
 import { text } from "./TextElement";
 import { Observable, of } from "rxjs";
+import { div } from "./BasicElementsFactory";
 
 class ExampleReactiveElement extends ReactiveElement<string> {
     template () {

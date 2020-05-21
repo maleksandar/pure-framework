@@ -1,7 +1,7 @@
 import { FunctionalComponent } from "./FunctionalComponent";
-import { div } from "./DivElement";
 import { text } from "./TextElement";
 import { Address } from "./appState";
+import { div } from "./BasicElementsFactory";
 class AddressElement extends FunctionalComponent<Address> {
     template () {
         return div(null, [

@@ -1,5 +1,4 @@
 import { FunctionalElement } from "./FunctionalElement";
-import { div } from "./DivElement";
 import { Observable } from "rxjs";
 
 export abstract class ReactiveElement<T>{

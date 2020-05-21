@@ -1,7 +1,7 @@
 import { FunctionalComponent, produceElement } from "./FunctionalComponent";
-import { div } from "./DivElement";
 import { text } from "./TextElement";
-import { getElementFactory } from "./elementFactory";
+import { getElementFactory } from "./functionalComponentFactory";
+import { div } from "./BasicElementsFactory";
 
 class WrapperElement extends FunctionalComponent<string> {
     template () {

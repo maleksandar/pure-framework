@@ -1,8 +1,8 @@
 import { FunctionalComponent, produceElement } from "./FunctionalComponent";
-import { div } from "./DivElement";
 import { text } from "./TextElement";
 import { AppState } from "./appState";
 import { address } from "./addressElement";
+import { div } from "./BasicElementsFactory";
 
 class Person extends FunctionalComponent<AppState> {
     template () {
