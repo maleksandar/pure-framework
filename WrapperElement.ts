@@ -1,8 +1,9 @@
-import { StatefullElement, produceElement } from "./StatefullElement";
+import { FunctionalComponent, produceElement } from "./FunctionalComponent";
 import { div } from "./DivElement";
 import { text } from "./TextElement";
+import { getElementFactory } from "./elementFactory";
 
-class WrapperElement extends StatefullElement<string> {
+class WrapperElement extends FunctionalComponent<string> {
     template () {
         return div(null, [
             div([text('Header')]),
@@ -18,11 +19,4 @@ class WrapperElement extends StatefullElement<string> {
     }
 }
 
-export const wrapper = (state) => new WrapperElement(state); 
-
-// function produceElement<ModelType>(constructorFunction: { new (state: ModelType): StatefullElement<ModelType>; }) {
-//     return (state) => {
-//         let wrapper = new constructorFunction(state);
-//         return wrapper.template();
-//     };
-// }
+export const wrapper = getElementFactory(WrapperElement);

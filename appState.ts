@@ -20,7 +20,6 @@ export let appState: AppState = {
 
 };
 
-
 const appStateSubject = new BehaviorSubject(appState);
 export const appState$ = appStateSubject.asObservable();
 

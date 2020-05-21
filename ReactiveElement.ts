@@ -6,14 +6,12 @@ export abstract class ReactiveElement<T>{
     inputState$: Observable<T> = null;
     state: T;
     render() {
-        console.log('Reactive element RENDERED!!!!')
         this.domElement = this.template().render();
         return this.domElement;
         
     };
 
     constructor(state$: Observable<T>) {
-        console.log('NEW REACTIVE C MADDE');
         this.inputState$ = state$;
         this.inputState$.subscribe(state => {
             this.updateState(state);

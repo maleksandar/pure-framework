@@ -1,8 +1,8 @@
-import { StatefullElement } from "./StatefullElement";
+import { FunctionalComponent } from "./FunctionalComponent";
 import { div } from "./DivElement";
 import { text } from "./TextElement";
 import { Address } from "./appState";
-class AddressElement extends StatefullElement<Address> {
+class AddressElement extends FunctionalComponent<Address> {
     template () {
         return div(null, [
             div([text('street:'), text(this.state.street)]),
@@ -12,7 +12,6 @@ class AddressElement extends StatefullElement<Address> {
 
     constructor(inputState:() => Address) {
         super(inputState);
-        console.log('NEW ADDRESS EL CREATED');
     }
 }
 

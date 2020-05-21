@@ -6,7 +6,6 @@ class TextElement implements FunctionalElement {
     }
     parent: FunctionalElement = null;
     render() {
-        console.log('rendering, ', this.text);
         this.domElement = document.createTextNode(this.text);
         return this.domElement;
     }

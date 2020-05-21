@@ -1,6 +1,6 @@
 import { FunctionalElement } from "./FunctionalElement";
-const oh = require('object-hash');
-export abstract class StatefullElement<T> implements FunctionalElement {
+import oh from 'object-hash';
+export abstract class FunctionalComponent<T> implements FunctionalElement {
     inputState: () => T = () =>null;
     previousState: T;
     _cachedTemplate: FunctionalElement = null;
@@ -9,7 +9,7 @@ export abstract class StatefullElement<T> implements FunctionalElement {
         return this.inputState();
     }
     render() {
-        if (this.inputState() === this.previousState && this.domElement) {
+        if (areEqual(this.inputState(), this.previousState) && this.domElement) {
             return this.domElement;
         }
         this.previousState = this.inputState();
@@ -39,22 +39,29 @@ export abstract class StatefullElement<T> implements FunctionalElement {
 
     static dictionary = Object.create(null);
 
-    static produceElement() {
-        return (state, id: number | string = 0) => {
+    static produceElement<ModelType>() {
+        return (state: () => ModelType, id: number | string = 0) => {
             const hash = oh.MD5(state());
             const key =`${hash}_${id}`
             if(!this.dictionary[key]) {
                 this.dictionary[key] = new this(state);
-                debugger;
             }
             return this.dictionary[key];
         };
     };
 };
 
-export function produceElement<ModelType>(constructorFunction: { new (state: () => ModelType): StatefullElement<ModelType>; }) {
+export function produceElement<ModelType>(constructorFunction: { new (state: () => ModelType): FunctionalComponent<ModelType>; }) {
     return (state) => {
         let wrapper = new constructorFunction(state);
         return wrapper.template();
     };
 };
+
+export function areEqual(state1: any, state2: any) {
+    if(!state1 || !state2){ 
+        return false;
+    }
+    return oh.MD5(state1) === oh.MD5(state2);
+
+}
