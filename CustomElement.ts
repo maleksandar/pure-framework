@@ -4,16 +4,16 @@ import { appState } from './appState';
 import { StatefullElement } from './StatefullElement';
 class CustomElement extends StatefullElement<string> {
     constructor(private selector: string) {
-        super();
+        super(selector);
     }
-    get state() {
+    get inputState() {
         return appState[this.selector];
     }
     template() {
-        return div([text(this.state)]);
+        return div([text(this.inputState)]);
     }
 }
 
-export function custom($state) {
-    return new CustomElement($state);
-}
+// export function custom($state) {
+//     return new CustomElement($state);
+// }
