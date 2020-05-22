@@ -2,6 +2,7 @@ import { FunctionalComponent } from "./FunctionalComponent";
 import { text } from "./TextElement";
 import { Address } from "./appState";
 import { div } from "./BasicElementsFactory";
+import { getElementFactory } from "./functionalComponentFactory";
 class AddressElement extends FunctionalComponent<Address> {
     template () {
         return div(null, [
@@ -15,4 +16,4 @@ class AddressElement extends FunctionalComponent<Address> {
     }
 }
 
-export const address = AddressElement.produceElement();
+export const address = getElementFactory(AddressElement); 

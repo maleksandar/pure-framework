@@ -7,13 +7,18 @@ export interface Address {
 export interface AppState {
     firstName: string,
     lastName: string,
-    address: Address
+    address: Address,
+    additionalAddress: Address;
 }
 
 export let appState: AppState = {
     firstName: 'Aleksandar',
     lastName: 'Milosavljevic',
     address: {
+        street: 'VP',
+        number: 56
+    },
+    additionalAddress: {
         street: 'VP',
         number: 56
     }

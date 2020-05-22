@@ -2,22 +2,31 @@ import { FunctionalComponent, produceElement } from "./FunctionalComponent";
 import { text } from "./TextElement";
 import { AppState } from "./appState";
 import { address } from "./addressElement";
-import { div } from "./BasicElementsFactory";
+import { div, InputElement } from "./BasicElementsFactory";
+import { getElementFactory } from "./functionalComponentFactory";
 
 class Person extends FunctionalComponent<AppState> {
     template () {
         return div(null, [
-            div([text('Ime:')]),
-            div([text(this.state.firstName)]),
-            div([text('Prezime:')]),
-            div([text(this.state.lastName)]),
-            address(() => this.state.address),
+            ...nameElement(this.state.firstName, this.state.lastName),
+            address(() => this.state.address, 'glavna_adresa'),
+            div('dodatna adresa:'),
+            address(() => this.state.additionalAddress, 'sporedna_adresa'),
         ]);
     } 
 
     constructor(inputState:() => AppState) {
         super(inputState);
-    }
+    }   
 }
 
-export const person = Person.produceElement<AppState>(); 
+function nameElement(firstName: string, lastName: string): InputElement[] {
+    return [
+        div('Ime:'),
+        div(firstName),
+        div('Prezime:'),
+        div(lastName)
+    ];
+}
+
+export const person = getElementFactory(Person); 

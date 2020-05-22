@@ -5,22 +5,27 @@ import { wrapper } from './WrapperElement';
 import { person } from './PersonElement';
 import { text } from './TextElement';
 import { div, h1 } from './BasicElementsFactory';
+import { page } from './fullPageComponent';
 
 const appRoot = document.getElementById('app');
 const store$ = new BehaviorSubject(appState);
 
 const app =
-    div([
-        h1([
-            'Neki Veliki naslov',
-            div('div usred naslova'),
-            'Nastavak naslova'
-        ]),
-        wrapper(nameSelector),
-        person(getState),
-        div({class: 'red'}, [text('html'), div(text('izmedju')), text('opaa')]),
-        div('Ovaj div ima samo text')
-    ]);
+        div([
+            h1({class:'red'},[
+                'Neki Veliki naslov',
+                div('div usred naslova'),
+                'Nastavak naslova',
+            ]).onClick(() => console.log("klikn'o si na heder. bravo.")),
+            wrapper(nameSelector),
+            person(getState),
+            div({class: 'red'}, [
+                'html',
+                div('izmedju'),
+                'opaa',
+            ]),
+            div('Ovaj div ima samo text')
+        ]);
 
 bootstrap(appRoot, app, appState$);
 
