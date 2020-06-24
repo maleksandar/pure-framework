@@ -11,7 +11,7 @@ export interface AppState {
     additionalAddress: Address;
 }
 
-export let appState: AppState = {
+export let _appState: AppState = {
     firstName: 'Aleksandar',
     lastName: 'Milosavljevic',
     address: {
@@ -25,25 +25,26 @@ export let appState: AppState = {
 
 };
 
-const appStateSubject = new BehaviorSubject(appState);
+export const appStateSubject = new BehaviorSubject(_appState);
 export const appState$ = appStateSubject.asObservable();
+export const appState = () => appStateSubject.getValue();
 
 export function updateFirstName(name: string) {
-    appState = {...appState, firstName: name }
-    appStateSubject.next(appState);
+    _appState = {..._appState, firstName: name }
+    appStateSubject.next(_appState);
 }
 
 export function updateAddressStreet(street: string) {
-    appState = { ...appState, address: {...appState.address, street}};
-    appStateSubject.next(appState);
+    _appState = { ..._appState, address: {..._appState.address, street}};
+    appStateSubject.next(_appState);
 }
 
 export function nameSelector() {
-    return appState.firstName;
+    return _appState.firstName;
 }
 
 export function getState() {
-    return appState;
+    return appStateSubject.getValue();
 }
 
 window.updateFirstName = updateFirstName;

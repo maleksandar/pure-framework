@@ -1,14 +1,12 @@
 import { BehaviorSubject } from 'rxjs';
-import { appState, nameSelector, appState$, getState } from './appState';
+import { appState, nameSelector, appState$, getState, appStateSubject } from './appState';
 import { bootstrap } from './bootstrap';
 import { wrapper } from './WrapperElement';
 import { person } from './PersonElement';
-import { text } from './TextElement';
 import { div, h1 } from './BasicElementsFactory';
-import { page } from './fullPageComponent';
 
 const appRoot = document.getElementById('app');
-const store$ = new BehaviorSubject(appState);
+const store$ = new BehaviorSubject(appState());
 
 const app =
         div([
@@ -29,4 +27,4 @@ const app =
 
 bootstrap(appRoot, app, appState$);
 
-window.store = store$;
+window.store = appStateSubject;

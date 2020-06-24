@@ -12,8 +12,9 @@ class AddressElement extends FunctionalComponent<Address> {
     } 
 
     constructor(inputState:() => Address) {
+        console.log('Created address element');
         super(inputState);
     }
 }
 
-export const address = getElementFactory(AddressElement); 
+export const address = getElementFactory(AddressElement);
