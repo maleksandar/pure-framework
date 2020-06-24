@@ -1,7 +1,8 @@
 import { FunctionalElement } from "./FunctionalElement";
 import oh from 'object-hash';
+ // Alternatively: Import just the clone methods from lodash
 export abstract class FunctionalComponent<T> implements FunctionalElement {
-    inputState: () => T = () =>null;
+    protected inputState: () => T = () =>null;
     previousState: T;
     _cachedTemplate: FunctionalElement = null;
     _template: FunctionalElement = null;
@@ -12,7 +13,9 @@ export abstract class FunctionalComponent<T> implements FunctionalElement {
         if (areEqual(this.inputState(), this.previousState) && this.domElement) {
             return this.domElement;
         }
-        this.previousState = this.inputState();
+
+        console.log('RENDERING ELEMENT WITH STATE: ', this.state)
+        this.previousState = cloneDeep(this.inputState());
         this.domElement = this.template().render();
         return this.domElement;
     };
@@ -39,16 +42,16 @@ export abstract class FunctionalComponent<T> implements FunctionalElement {
 
     static dictionary = Object.create(null);
 
-    static produceElement<ModelType>() {
-        return (state: () => ModelType, id: number | string = 0) => {
-            const hash = oh.MD5(state());
-            const key =`${hash}_${id}`
-            if(!this.dictionary[key]) {
-                this.dictionary[key] = new this(state);
-            }
-            return this.dictionary[key];
-        };
-    };
+    // static produceElement<ModelType>() {
+    //     return (state: () => ModelType, id: number | string = 0) => {
+    //         const hash = oh.MD5(state());
+    //         const key =`${hash}_${id}`
+    //         if(!this.dictionary[key]) {
+    //             this.dictionary[key] = new this(state);
+    //         }
+    //         return this.dictionary[key];
+    //     };
+    // };
 };
 
 export function produceElement<ModelType>(constructorFunction: { new (state: () => ModelType): FunctionalComponent<ModelType>; }) {
@@ -64,4 +67,8 @@ export function areEqual(state1: any, state2: any) {
     }
     return oh.MD5(state1) === oh.MD5(state2);
 
+}
+
+function cloneDeep(obj) {
+    return JSON.parse(JSON.stringify(obj));
 }
