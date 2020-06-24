@@ -1,11 +1,13 @@
 import { FunctionalElement } from './FunctionalElement';
+import { DomAttachments } from './DomAttachments';
 
-export abstract class BlockElement implements FunctionalElement {
-domElement: HTMLElement;
+export abstract class BlockElement extends DomAttachments implements FunctionalElement {
+    domElement: HTMLElement;
     parent = null;
 
-    clickHandlers: (() => any)[] = [];
+    // clickHandlers: (() => any)[] = [];
     constructor(protected attributes: {}, protected _children: FunctionalElement[], private _tag) {
+        super();
         if (arguments.length === 2) {
             this.attributes = arguments[0];
             this._children = arguments[1];
@@ -36,8 +38,16 @@ domElement: HTMLElement;
         return this.domElement;
     }
 
-    onClick(handler) {
-        this.clickHandlers.push(handler);
+    // onClick(handler) {
+    //     this.clickHandlers.push(handler);
+    //     return this;
+    // }
+
+    addClass(_class: string) {
+        if(this.attributes && this.attributes['class']) {
+            this.attributes = {...this.attributes, class: `${(<any>this.attributes).class} ${_class}` };
+            return this;
+        }
         return this;
     }
 }

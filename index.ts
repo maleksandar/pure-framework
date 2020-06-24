@@ -10,7 +10,7 @@ import { testState, testStateSubject, testState$ } from './TestState';
 const appRoot = document.getElementById('app');
 const store$ = new BehaviorSubject(appState());
 
-const app = testElement(testState)
+const app = testElement(testState);
         // div([
         //     h1({class:'red'},[
         //         'Neki Veliki naslov',

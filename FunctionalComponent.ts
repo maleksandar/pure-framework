@@ -1,7 +1,10 @@
 import { FunctionalElement } from "./FunctionalElement";
 import oh from 'object-hash';
+import { DomAttachments } from "./DomAttachments";
+const clone = require('rfdc')()
+
  // Alternatively: Import just the clone methods from lodash
-export abstract class FunctionalComponent<T> implements FunctionalElement {
+export abstract class FunctionalComponent<T> extends DomAttachments implements FunctionalElement {
     protected inputState: () => T = () =>null;
     previousState: T;
     _cachedTemplate: FunctionalElement = null;
@@ -17,6 +20,10 @@ export abstract class FunctionalComponent<T> implements FunctionalElement {
         console.log('RENDERING ELEMENT WITH STATE: ', this.state)
         this.previousState = cloneDeep(this.inputState());
         this.domElement = this.template().render();
+
+        if (this.clickHandlers) {
+            this.clickHandlers.forEach(handler => this.domElement.addEventListener('click', handler));
+        }
         return this.domElement;
     };
 
@@ -28,8 +35,10 @@ export abstract class FunctionalComponent<T> implements FunctionalElement {
     }
 
     constructor(state: () => T) {
+        super();
         this.inputState = state;
     }
+
     parent: FunctionalElement;
 
     get children() {
@@ -70,5 +79,5 @@ export function areEqual(state1: any, state2: any) {
 }
 
 function cloneDeep(obj) {
-    return JSON.parse(JSON.stringify(obj));
+    return clone(obj);
 }

@@ -6,28 +6,39 @@ import { TestState } from "./TestState";
 
 class Test extends FunctionalComponent<TestState> {
     template () {
-        return div([
-            div([
+        return div({class: 'content'},[
+            div({class: 'header'},[
                 'id: ', this.state.id,
-                'content: ', this.state.content,
+                div(['content: ', this.state.content]),
+                div([' children: ', `${this.state.subState? this.state.subState.length : 0}`])
             ]),
 
-            div(['children:',
+            div({class: 'children'}, [
                 ...this.renderChildren()
             ])
+            // .addClass('children')
             // testElement(() => this.state.subState[0]),
             // testElement(() => this.state.subState[1]),
         ]);
     } 
 
     constructor(inputState:() => TestState) {
+        console.log('Test constructor called!');
         super(inputState);
     }
     
     renderChildren() {
         if(this.state.subState) {
             return this.state.subState.map((_, index) => {
-                return testElement(() => this.state.subState[index])
+                return testElement(() => this.state.subState[index]).onClick(
+                    (event) => { 
+                        console.log('You clicked on TestElement!', this.state.subState[index].id);
+                        event.stopPropagation();
+                    },
+                    (event) => {
+                        console.log('Also this will execute')!
+                    }
+                )
             })
         } else {
             return [];

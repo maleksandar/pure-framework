@@ -22,15 +22,15 @@ export let _testState: TestState = {
                 content: 'firstGrandson'
             },
             {
-                id: '01',
+                id: '001',
                 content: 'secondChild',
                 subState: [
                     {
-                        id: '010',
+                        id: '0010',
                         content: 'secondGrandson'
                     },
                     {
-                        id: '011',
+                        id: '0011',
                         content: 'thirdGrandson'
                     }
                 ]
@@ -53,5 +53,5 @@ export function updateTestState() {
     previous[0].content = 'NEW first child COntent'
     testStateSubject.next({ ...testState(), subState: [...previous] })
 }
- window.update = updateTestState;
+(<any>window).update = updateTestState;
 
