@@ -1,7 +1,7 @@
-import { FunctionalComponent, produceElement } from "./FunctionalComponent";
-import { text } from "./TextElement";
-import { getElementFactory } from "./functionalComponentFactory";
-import { div } from "./BasicElementsFactory";
+import { FunctionalComponent } from "./core/FunctionalComponent";
+import { div } from "./functional-templates/block-elements";
+import { text } from "./functional-templates/inline-elements";
+import { functionalComponentFactory } from "./core/functionalComponentFactory";
 
 class WrapperElement extends FunctionalComponent<string> {
     template () {
@@ -19,4 +19,4 @@ class WrapperElement extends FunctionalComponent<string> {
     }
 }
 
-export const wrapper = getElementFactory(WrapperElement);
+export const wrapper = functionalComponentFactory(WrapperElement);

@@ -1,7 +1,7 @@
-import { FunctionalElement } from './FunctionalElement';
-import { DomAttachments } from './DomAttachments';
+import { FunctionalElement } from '../../core/FunctionalElement';
+import { DomAttachments } from '../../core/DomAttachments';
 
-export abstract class BlockElement extends DomAttachments implements FunctionalElement {
+export abstract class BlockElement extends DomAttachments<BlockElement> implements FunctionalElement {
     domElement: HTMLElement;
     parent = null;
 

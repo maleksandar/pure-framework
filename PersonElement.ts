@@ -1,9 +1,9 @@
-import { FunctionalComponent, produceElement } from "./FunctionalComponent";
-import { text } from "./TextElement";
-import { AppState } from "./appState";
+import { FunctionalComponent } from "./core/FunctionalComponent";
+import { div } from "./functional-templates/block-elements";
 import { address } from "./addressElement";
-import { div, InputElement } from "./BasicElementsFactory";
-import { getElementFactory } from "./functionalComponentFactory";
+import { functionalComponentFactory } from "./core/functionalComponentFactory";
+import { AppState } from "./appState";
+import { InputElement } from "./functional-templates/block-elements/blockElementsFactory";
 
 class Person extends FunctionalComponent<AppState> {
     template () {
@@ -29,4 +29,4 @@ function nameElement(firstName: string, lastName: string): InputElement[] {
     ];
 }
 
-export const person = getElementFactory(Person); 
+export const person = functionalComponentFactory(Person); 

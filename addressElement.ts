@@ -1,8 +1,9 @@
-import { FunctionalComponent } from "./FunctionalComponent";
-import { text } from "./TextElement";
+import { text } from "./functional-templates/inline-elements";
+import { div } from "./functional-templates/block-elements";
+import { FunctionalComponent } from "./core/FunctionalComponent";
 import { Address } from "./appState";
-import { div } from "./BasicElementsFactory";
-import { getElementFactory } from "./functionalComponentFactory";
+import { functionalComponentFactory } from "./core/functionalComponentFactory";
+
 class AddressElement extends FunctionalComponent<Address> {
     template () {
         return div(null, [
@@ -17,4 +18,4 @@ class AddressElement extends FunctionalComponent<Address> {
     }
 }
 
-export const address = getElementFactory(AddressElement);
+export const address = functionalComponentFactory(AddressElement);

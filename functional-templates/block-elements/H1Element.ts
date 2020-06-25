@@ -1,4 +1,4 @@
-import { FunctionalElement } from './FunctionalElement';
+import { FunctionalElement } from '../../core/FunctionalElement';
 import { Observable } from 'rxjs';
 import { BlockElement } from './BlockElement';
 

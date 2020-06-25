@@ -3,8 +3,7 @@ import oh from 'object-hash';
 import { DomAttachments } from "./DomAttachments";
 const clone = require('rfdc')()
 
- // Alternatively: Import just the clone methods from lodash
-export abstract class FunctionalComponent<T> extends DomAttachments implements FunctionalElement {
+export abstract class FunctionalComponent<T> extends DomAttachments<FunctionalComponent<T>> implements FunctionalElement {
     protected inputState: () => T = () =>null;
     previousState: T;
     _cachedTemplate: FunctionalElement = null;
@@ -16,8 +15,9 @@ export abstract class FunctionalComponent<T> extends DomAttachments implements F
         if (areEqual(this.inputState(), this.previousState) && this.domElement) {
             return this.domElement;
         }
+        
 
-        console.log('RENDERING ELEMENT WITH STATE: ', this.state)
+        console.log('RENDERING ELEMENT WITH STATE: ', this.state);
         this.previousState = cloneDeep(this.inputState());
         this.domElement = this.template().render();
 
@@ -26,6 +26,7 @@ export abstract class FunctionalComponent<T> extends DomAttachments implements F
         }
         return this.domElement;
     };
+
 
     cachedTemplate() {
         if(!this._template) {
@@ -51,16 +52,6 @@ export abstract class FunctionalComponent<T> extends DomAttachments implements F
 
     static dictionary = Object.create(null);
 
-    // static produceElement<ModelType>() {
-    //     return (state: () => ModelType, id: number | string = 0) => {
-    //         const hash = oh.MD5(state());
-    //         const key =`${hash}_${id}`
-    //         if(!this.dictionary[key]) {
-    //             this.dictionary[key] = new this(state);
-    //         }
-    //         return this.dictionary[key];
-    //     };
-    // };
 };
 
 export function produceElement<ModelType>(constructorFunction: { new (state: () => ModelType): FunctionalComponent<ModelType>; }) {

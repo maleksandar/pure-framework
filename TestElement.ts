@@ -1,14 +1,22 @@
-import { FunctionalComponent, produceElement } from "./FunctionalComponent";
+import { FunctionalComponent, produceElement } from "./core/FunctionalComponent";
 
-import { div } from "./BasicElementsFactory";
-import { getElementFactory } from "./functionalComponentFactory";
+import { div } from "./functional-templates/block-elements";
+import { functionalComponentFactory } from "./core/functionalComponentFactory";
 import { TestState } from "./TestState";
 
+
 class Test extends FunctionalComponent<TestState> {
+    
+    constructor(inputState:() => TestState) {
+        super(inputState);
+        console.log('Test constructor called!');
+    }
+
     template () {
         return div({class: 'content'},[
             div({class: 'header'},[
                 'id: ', this.state.id,
+                div(['Number of renders: ', `${this.state.timesReRendered}`]),
                 div(['content: ', this.state.content]),
                 div([' children: ', `${this.state.subState? this.state.subState.length : 0}`])
             ]),
@@ -16,29 +24,27 @@ class Test extends FunctionalComponent<TestState> {
             div({class: 'children'}, [
                 ...this.renderChildren()
             ])
-            // .addClass('children')
-            // testElement(() => this.state.subState[0]),
-            // testElement(() => this.state.subState[1]),
-        ]);
-    } 
 
-    constructor(inputState:() => TestState) {
-        console.log('Test constructor called!');
-        super(inputState);
+        ]);
     }
     
     renderChildren() {
         if(this.state.subState) {
             return this.state.subState.map((_, index) => {
-                return testElement(() => this.state.subState[index]).onClick(
-                    (event) => { 
-                        console.log('You clicked on TestElement!', this.state.subState[index].id);
-                        event.stopPropagation();
-                    },
-                    (event) => {
-                        console.log('Also this will execute')!
-                    }
-                )
+                return testElement(() => this.state.subState[index])
+                    .onClick(
+                        (event) => { 
+                            console.log('You clicked on TestElement!', this.state.subState[index].id);
+                            event.stopPropagation();
+                        },
+                        (event) => {
+                            console.log('Also this will execute')!
+                        }
+                    ).onClick(
+                        () => {
+                            console.log('And this as well!')!
+                        }
+                    )
             })
         } else {
             return [];
@@ -46,4 +52,4 @@ class Test extends FunctionalComponent<TestState> {
     }
 }
 
-export const testElement = getElementFactory(Test); 
+export const testElement: (state: () => TestState, id?: number | string, funcEl?) => FunctionalComponent<TestState> = functionalComponentFactory<TestState>(Test); 

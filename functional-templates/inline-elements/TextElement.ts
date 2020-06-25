@@ -1,5 +1,5 @@
-import { FunctionalElement } from './FunctionalElement';
-class TextElement implements FunctionalElement {
+import { FunctionalElement } from '../../core/FunctionalElement';
+export class TextElement implements FunctionalElement {
     domElement: Text;
     constructor(private text: string) {
         this.text = text;
@@ -13,8 +13,4 @@ class TextElement implements FunctionalElement {
     get children() {
         return null;
     }
-}
-
-export function text(string) {
-    return new TextElement(string);
 }

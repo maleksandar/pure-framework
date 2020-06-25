@@ -7,31 +7,41 @@ export interface Address {
 export interface TestState {
     id: string,
     content: string;
+    timesReRendered: number;
     subState?: TestState[];
 }
 
 export let _testState: TestState = {
     id: '0',
     content: 'root content',
+    timesReRendered: 0,
     subState: [{
         id: '00',
         content: 'firstChild',
+        timesReRendered: 0,
         subState: [
             {
                 id: '000',
-                content: 'firstGrandson'
+                content: 'firstGrandson',
+                timesReRendered: 0,
+
             },
             {
                 id: '001',
                 content: 'secondChild',
+                timesReRendered: 0,
+
                 subState: [
                     {
                         id: '0010',
-                        content: 'secondGrandson'
+                        content: 'secondGrandson',
+                        timesReRendered: 0,
+
                     },
                     {
                         id: '0011',
-                        content: 'thirdGrandson'
+                        content: 'thirdGrandson',
+                        timesReRendered: 0,
                     }
                 ]
             }
@@ -39,6 +49,7 @@ export let _testState: TestState = {
     },{
         id: '01',
         content: 'secondChild',
+        timesReRendered: 0,
     }]
 
 
