@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { appState, nameSelector, appState$, getState, appStateSubject } from './appState';
-import { bootstrap } from './bootstrap';
+import { bootstrap } from './core/bootstrap';
 import { testElement } from './TestElement';
 import { testState, testStateSubject, testState$ } from './TestState';
 import { div, h1 } from './functional-templates/block-elements';

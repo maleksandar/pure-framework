@@ -7,7 +7,7 @@ class WrapperElement extends FunctionalComponent<string> {
     template () {
         return div(null, [
             div([text('Header')]),
-            text(this.inputState()),
+            text(this.state),
             div({class: 'red'}, [
                 text('Footer')
             ]),
