@@ -10,9 +10,14 @@ export function functionalComponentFactory<ModelType>(constructorFunction: Funct
     return (state: () => ModelType, id: number | string = 0, funcEl?) => {
         const hash = oh.MD5(state());
         const key =`${hash}_${id}`
-        if(!dictionary[key]) {
-            dictionary[key] = new constructorFunction(state, funcEl);
+        if(!dictionary[constructorFunction.name]) {
+            dictionary[constructorFunction.name] = Object.create(null);
         }
-        return dictionary[key] as FunctionalComponent<ModelType> ;
+
+        if(!dictionary[constructorFunction.name][key]) {
+            dictionary[constructorFunction.name][key] = new constructorFunction(state, funcEl);
+        }
+
+        return dictionary[constructorFunction.name][key] as FunctionalComponent<ModelType> ;
     };
 };
