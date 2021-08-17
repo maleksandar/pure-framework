@@ -14,8 +14,8 @@ class WrapperElement extends FunctionalComponent<string> {
         ]);
     } 
 
-    constructor(inputState:() => string) {
-        super(inputState);
+    constructor(inputState:() => string, updateState: (string) => void) {
+        super(inputState, updateState);
     }
 }
 

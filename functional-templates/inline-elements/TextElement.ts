@@ -4,7 +4,6 @@ export class TextElement implements FunctionalElement {
     constructor(private text: string) {
         this.text = text;
     }
-    parent: FunctionalElement = null;
     render() {
         this.domElement = document.createTextNode(this.text);
         return this.domElement;

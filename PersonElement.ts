@@ -9,15 +9,19 @@ class Person extends FunctionalComponent<AppState> {
     template () {
         return div(null, [
             ...nameElement(this.state.firstName, this.state.lastName),
-            address(() => this.state.address, 'glavna_adresa'),
+            address(() => this.state.address,() => {}, 'glavna_adresa')
+                .onClick(() => this.updateState({ 
+                    // firstName: "Mitrandir",
+                    // lastName: "Siva Lutalica",
+                    // address: {number: 1, street: "VelikoPoljska"},
+                    ...this.state,
+                    additionalAddress: {number: 2, street: 'VelikoPoljska'}
+                })
+                ),
             div('dodatna adresa:'),
-            address(() => this.state.additionalAddress, 'sporedna_adresa'),
+            address(() => this.state.additionalAddress,() => {}, 'sporedna_adresa'),
         ]);
-    } 
-
-    constructor(inputState:() => AppState) {
-        super(inputState);
-    }   
+    }
 }
 
 function nameElement(firstName: string, lastName: string): InputElement[] {

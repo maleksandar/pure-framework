@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { appState, nameSelector, appState$, getState, appStateSubject } from './appState';
+import { appState, nameSelector, appState$, getState, updateState } from './appState';
 import { bootstrap } from './core/bootstrap';
 import { testElement } from './TestElement';
 import { testState, testStateSubject, testState$ } from './TestState';
@@ -20,8 +20,8 @@ const app2 =
                 div('div usred naslova'),
                 'Nastavak naslova',
             ]).onClick(() => console.log("klikn'o si na heder. bravo.")),
-            wrapper(nameSelector),
-            person(getState),
+            wrapper(nameSelector, () => {}),
+            person(getState, updateState),
             div({class: 'red'}, [
                 'html',
                 div('izmedju'),

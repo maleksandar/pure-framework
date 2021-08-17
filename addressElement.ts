@@ -12,10 +12,10 @@ class AddressElement extends FunctionalComponent<Address> {
         ]);
     } 
 
-    constructor(inputState:() => Address) {
-        console.log('Created address element');
-        super(inputState);
-    }
+    // constructor(inputState:() => Address, updateState: (newState: Address) => void) {
+    //     console.log('Created address element');
+    //     super(inputState, updateState);
+    // }
 }
 
 export const address = functionalComponentFactory(AddressElement);

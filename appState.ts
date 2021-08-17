@@ -46,6 +46,9 @@ export function nameSelector() {
 export function getState() {
     return appStateSubject.getValue();
 }
+export function updateState(newState: AppState) {
+    appStateSubject.next(newState);
+}
 
 window.updateFirstName = updateFirstName;
 window.updateAddressStreet = updateAddressStreet;
