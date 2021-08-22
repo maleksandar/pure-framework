@@ -44,6 +44,9 @@ export abstract class BlockElement extends DomAttachments<BlockElement> implemen
 
     private createDomElement(): void {
         this.domElement = document.createElement(this._tag);
+        if(!this.children || this.children.length === 0) {
+            return;
+        }
         this.children.forEach(child => {
             this.domElement.appendChild(child.render());
         });

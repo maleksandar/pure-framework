@@ -1,14 +1,11 @@
-.red {
-    background-color: red;
+.page-container {
+
 }
-.content {
-    width: 100%;
+
+.todo-item {
+    margin: 10px;
 }
-.children {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-.header {
-    text-align: center;
+
+.done-item {
+    text-decoration: line-through;
 }

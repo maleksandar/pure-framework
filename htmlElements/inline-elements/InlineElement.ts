@@ -5,7 +5,7 @@ import { TextElement } from './TextElement';
 export abstract class InlineElement extends DomAttachments<InlineElement> implements FunctionalElement {
     public domElement: HTMLElement;
 
-    constructor(protected attributes: {}, protected _children: (InlineElement | TextElement)[], private _tag) {
+    constructor(protected attributes?: {}, protected _children?: (InlineElement | TextElement)[], private _tag?) {
         super();
         if (arguments.length === 2) {
             // in case attributes object is provided as a first argument
@@ -45,6 +45,9 @@ export abstract class InlineElement extends DomAttachments<InlineElement> implem
 
     private createDomElement(): void {
         this.domElement = document.createElement(this._tag);
+        if(!this.children || this.children.length === 0) {
+            return;
+        }
         this.children.forEach(child => {
             this.domElement.appendChild(child.render());
         });

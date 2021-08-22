@@ -6,9 +6,9 @@ import { componentFactory } from "./core/ComponentFactory";
 class WrapperElement extends Component<string> {
     template () {
         return div(null, [
-            div([text('Header')]),
-            text(this.state),
-            div({class: 'red'}, [
+            div([ text('Header') ]),
+            text( this.state ),
+            div({ class: 'red' }, [
                 text('Footer')
             ]),
         ]);

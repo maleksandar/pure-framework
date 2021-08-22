@@ -14,7 +14,9 @@ export function inlineElementFactory<T extends InlineElement>(HtmlConstructorTyp
         } else {
             if(Array.isArray(args[0])) {
                 return new HtmlConstructorType(null, transformToTextNodes(args[0]));
-            } else return new HtmlConstructorType(null, transformToTextNodes([args[0]]))
+            } else if(args) {
+                return new HtmlConstructorType(null, transformToTextNodes([args[0]]))
+            }
         }
     })
 }
