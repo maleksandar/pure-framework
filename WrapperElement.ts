@@ -1,9 +1,9 @@
-import { FunctionalComponent } from "./core/FunctionalComponent";
+import { Component } from "./core/Component";
 import { div } from "./functional-templates/block-elements";
 import { text } from "./functional-templates/inline-elements";
-import { functionalComponentFactory } from "./core/functionalComponentFactory";
+import { componentFactory } from "./core/componentFactory";
 
-class WrapperElement extends FunctionalComponent<string> {
+class WrapperElement extends Component<string> {
     template () {
         return div(null, [
             div([text('Header')]),
@@ -15,4 +15,4 @@ class WrapperElement extends FunctionalComponent<string> {
     } 
 }
 
-export const wrapper = functionalComponentFactory(WrapperElement);
+export const wrapper = componentFactory(WrapperElement);

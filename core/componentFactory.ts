@@ -1,11 +1,11 @@
 import oh from 'object-hash';
-import { FunctionalComponent } from './FunctionalComponent';
-type FunctionalComponentConstructor<ModelType> = { new (state: () => ModelType): FunctionalComponent<ModelType>; }
+import { Component } from './Component';
+type FunctionalComponentConstructor<ModelType> = { new (state: () => ModelType): Component<ModelType>; }
 
 const dictionary = Object.create(null);
 
-export function functionalComponentFactory<ModelType>(constructorFunction: FunctionalComponentConstructor<ModelType>)
-    : (state: () => ModelType, id?: number | string) => FunctionalComponent<ModelType> {
+export function componentFactory<ModelType>(constructorFunction: FunctionalComponentConstructor<ModelType>)
+    : (state: () => ModelType, id?: number | string) => Component<ModelType> {
     return (state: () => ModelType, id: number | string = 0) => {
         const stateHash = oh.MD5(state());
         const key =`${stateHash}_${id}`
@@ -17,6 +17,6 @@ export function functionalComponentFactory<ModelType>(constructorFunction: Funct
             dictionary[constructorFunction.name][key] = new constructorFunction(state);
         }
 
-        return dictionary[constructorFunction.name][key] as FunctionalComponent<ModelType> ;
+        return dictionary[constructorFunction.name][key] as Component<ModelType> ;
     };
 };

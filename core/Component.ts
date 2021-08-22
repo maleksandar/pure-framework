@@ -2,7 +2,7 @@ import { FunctionalElement } from "./FunctionalElement";
 import { DomAttachments } from "./DomAttachments";
 import { areEqual, cloneDeep } from "./utils";
 
-export abstract class FunctionalComponent<ModelType> extends DomAttachments<FunctionalComponent<ModelType>> implements FunctionalElement {
+export abstract class Component<ModelType> extends DomAttachments<Component<ModelType>> implements FunctionalElement {
     protected updateState: (newState: ModelType) => void;
     abstract template(): FunctionalElement;
     protected inputState: () => ModelType = () =>null;

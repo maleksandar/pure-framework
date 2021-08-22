@@ -1,11 +1,11 @@
-import { FunctionalComponent } from "./core/FunctionalComponent";
+import { Component } from "./core/Component";
 import { div } from "./functional-templates/block-elements";
 import { address } from "./addressElement";
-import { functionalComponentFactory } from "./core/functionalComponentFactory";
+import { componentFactory } from "./core/componentFactory";
 import { AppState } from "./appState";
 import { InputElement } from "./functional-templates/block-elements/blockElementsFactory";
 
-class Person extends FunctionalComponent<AppState> {
+class Person extends Component<AppState> {
     template () {
         return div(null, [
             ...nameElement(this.state.firstName, this.state.lastName),
@@ -29,4 +29,4 @@ function nameElement(firstName: string, lastName: string): InputElement[] {
     ];
 }
 
-export const person = functionalComponentFactory(Person); 
+export const person = componentFactory(Person); 
