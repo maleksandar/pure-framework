@@ -1,16 +1,10 @@
-import { Store } from "./core";
-import { Component } from "./core/Component";
-import { componentFactory } from "./core/ComponentFactory";
-import { FunctionalElement } from "./core/FunctionalElement";
-import { button, div } from "./htmlElements/block-elements";
-import { input } from "./htmlElements/form-elements";
-import { span } from "./htmlElements/inline-elements";
+import { Component, componentFactory } from "./core";
+import { button, div, input, span } from "./htmlElements";
+
 import { store, ToDoState } from "./store";
 
-
 class ToDoListComponent extends Component<ToDoState> {
-  template(): FunctionalElement {
-
+  template() {
     return div({ class: 'page-container' },[
       ...this.todoHeader(),
       ...this.todoSegment(),
