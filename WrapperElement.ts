@@ -1,7 +1,7 @@
 import { Component } from "./core/Component";
-import { div } from "./functional-templates/block-elements";
-import { text } from "./functional-templates/inline-elements";
-import { componentFactory } from "./core/componentFactory";
+import { div } from "./htmlElements/block-elements";
+import { text } from "./htmlElements/inline-elements";
+import { componentFactory } from "./core/ComponentFactory";
 
 class WrapperElement extends Component<string> {
     template () {

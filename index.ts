@@ -1,10 +1,10 @@
 import { AppState } from './appState';
 import { bootstrap } from './core/bootstrap';
-import { div, h1 } from './functional-templates/block-elements';
+import { div, h1 } from './htmlElements/block-elements';
 import { wrapper } from './WrapperElement';
 import { person } from './PersonElement';
 import { Store } from './core/store';
-import { span } from './functional-templates/inline-elements';
+import { span } from './htmlElements/inline-elements';
 
 const store = new Store<AppState>({
     firstName: 'Aleksandar',

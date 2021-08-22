@@ -1,6 +1,6 @@
 import { Component } from "../core/Component";
 import { FunctionalElement } from "../core/FunctionalElement";
-import { div } from "../functional-templates/block-elements";
+import { div } from "../htmlElements/block-elements";
 
 class ConcreteComponent extends Component<number> {
   template() {

@@ -1,9 +1,9 @@
 import { Component } from "./core/Component";
-import { div } from "./functional-templates/block-elements";
+import { div } from "./htmlElements/block-elements";
 import { address } from "./addressElement";
-import { componentFactory } from "./core/componentFactory";
+import { componentFactory } from "./core/ComponentFactory";
 import { AppState } from "./appState";
-import { InputElement } from "./functional-templates/block-elements/blockElementsFactory";
+import { InputElement } from "./htmlElements/block-elements/blockElementsFactory";
 
 class Person extends Component<AppState> {
     template () {

@@ -1,8 +1,8 @@
-import { text } from "./functional-templates/inline-elements";
-import { div } from "./functional-templates/block-elements";
+import { text } from "./htmlElements/inline-elements";
+import { div } from "./htmlElements/block-elements";
 import { Component } from "./core/Component";
 import { Address } from "./appState";
-import { componentFactory } from "./core/componentFactory";
+import { componentFactory } from "./core/ComponentFactory";
 
 class AddressElement extends Component<Address> {
     template () {
