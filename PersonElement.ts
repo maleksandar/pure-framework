@@ -1,7 +1,7 @@
 import { Component } from "./core/Component";
 import { div } from "./htmlElements/block-elements";
 import { address } from "./addressElement";
-import { componentFactory } from "./core/ComponentFactory";
+import { componentFactory } from "./core;
 import { AppState } from "./appState";
 import { InputElement } from "./htmlElements/block-elements/blockElementsFactory";
 
