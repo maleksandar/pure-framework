@@ -20,8 +20,8 @@ const app2 =
                 div('div usred naslova'),
                 'Nastavak naslova',
             ]).onClick(() => console.log("klikn'o si na heder. bravo.")),
-            wrapper(nameSelector, () => {}),
-            person(getState, updateState),
+            wrapper(nameSelector),
+            person(getState),
             div({class: 'red'}, [
                 'html',
                 div('izmedju'),

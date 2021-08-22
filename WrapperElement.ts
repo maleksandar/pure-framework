@@ -13,10 +13,6 @@ class WrapperElement extends FunctionalComponent<string> {
             ]),
         ]);
     } 
-
-    constructor(inputState:() => string, updateState: (string) => void) {
-        super(inputState, updateState);
-    }
 }
 
 export const wrapper = functionalComponentFactory(WrapperElement);

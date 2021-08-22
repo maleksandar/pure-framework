@@ -9,17 +9,13 @@ class Person extends FunctionalComponent<AppState> {
     template () {
         return div(null, [
             ...nameElement(this.state.firstName, this.state.lastName),
-            address(() => this.state.address,() => {}, 'glavna_adresa')
-                .onClick(() => this.updateState({ 
-                    // firstName: "Mitrandir",
-                    // lastName: "Siva Lutalica",
-                    // address: {number: 1, street: "VelikoPoljska"},
-                    ...this.state,
-                    additionalAddress: {number: 2, street: 'VelikoPoljska'}
-                })
+            address(() => this.state.address, 'glavna_adresa')
+                .onClick(() => {
+                    console.log("Address clicked: ", this.state.address.street, " ", this.state.address.number)
+                }
                 ),
             div('dodatna adresa:'),
-            address(() => this.state.additionalAddress,() => {}, 'sporedna_adresa'),
+            address(() => this.state.additionalAddress, 'sporedna_adresa'),
         ]);
     }
 }

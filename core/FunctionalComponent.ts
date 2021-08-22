@@ -2,11 +2,11 @@ import { FunctionalElement } from "./FunctionalElement";
 import { DomAttachments } from "./DomAttachments";
 import { areEqual, cloneDeep } from "./utils";
 
-export abstract class FunctionalComponent<T> extends DomAttachments<FunctionalComponent<T>> implements FunctionalElement {
-    protected updateState: (newState: T) => void;
+export abstract class FunctionalComponent<ModelType> extends DomAttachments<FunctionalComponent<ModelType>> implements FunctionalElement {
+    protected updateState: (newState: ModelType) => void;
     abstract template(): FunctionalElement;
-    protected inputState: () => T = () =>null;
-    previousState: T;
+    protected inputState: () => ModelType = () =>null;
+    previousState: ModelType;
 
     domElement: HTMLElement | Text = null;
     _template: FunctionalElement = null;
@@ -47,10 +47,9 @@ export abstract class FunctionalComponent<T> extends DomAttachments<FunctionalCo
         this.previousState = cloneDeep(this.inputState());
     }
 
-    constructor(inputState: () => T, updateState: (newState: T) => void) {
+    constructor(inputState: () => ModelType) {
         super();
         this.inputState = inputState;
-        this.updateState = updateState;
     }
 
     get children() {
