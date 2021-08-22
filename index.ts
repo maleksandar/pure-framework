@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { appState, nameSelector, appState$, getState, updateState } from './appState';
+import { nameSelector, appState$, state, updateState } from './appState';
 import { bootstrap } from './core/bootstrap';
 import { testElement } from './TestElement';
 import { testState, testStateSubject, testState$ } from './TestState';
@@ -8,20 +8,23 @@ import { wrapper } from './WrapperElement';
 import { person } from './PersonElement';
 
 const appRoot = document.getElementById('app');
-const app2Root = document.getElementById('app2');
-
-const store$ = new BehaviorSubject(appState());
-
 const app = testElement(testState);
+bootstrap(appRoot, app, testState$);
+
+
+const app2Root = document.getElementById('app2');
 const app2 = 
         div([
             h1({class:'red'},[
                 'Neki Veliki naslov',
                 div('div usred naslova'),
                 'Nastavak naslova',
-            ]).onClick(() => console.log("klikn'o si na heder. bravo.")),
+            ]).onClick(() => {
+                console.log("klikn'o si na heder. bravo.");
+                updateState({lastName: "Petronijevic"})
+            }),
             wrapper(nameSelector),
-            person(getState),
+            person(state),
             div({class: 'red'}, [
                 'html',
                 div('izmedju'),
@@ -29,8 +32,6 @@ const app2 =
             ]),
             div('Ovaj div ima samo text')
         ]);
-
-bootstrap(appRoot, app, testState$);
 bootstrap(app2Root, app2, appState$);
 
 
