@@ -1,10 +1,10 @@
-import { BehaviorSubject } from 'rxjs';
 import { AppState } from './appState';
 import { bootstrap } from './core/bootstrap';
 import { div, h1 } from './functional-templates/block-elements';
 import { wrapper } from './WrapperElement';
 import { person } from './PersonElement';
 import { Store } from './core/store';
+import { span } from './functional-templates/inline-elements';
 
 const store = new Store<AppState>({
     firstName: 'Aleksandar',
@@ -23,6 +23,7 @@ const domRoot = document.getElementById('app');
 const app = 
         div([
             h1({class:'red'},[
+                span(['neki tekst', span('neki novi')]),
                 'Neki Veliki naslov',
                 div('div usred naslova'),
                 'Nastavak naslova',
