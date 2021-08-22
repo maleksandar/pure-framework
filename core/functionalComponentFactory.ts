@@ -7,8 +7,8 @@ const dictionary = Object.create(null);
 export function functionalComponentFactory<ModelType>(constructorFunction: FunctionalComponentConstructor<ModelType>)
     : (state: () => ModelType, id?: number | string) => FunctionalComponent<ModelType> {
     return (state: () => ModelType, id: number | string = 0) => {
-        const hash = oh.MD5(state());
-        const key =`${hash}_${id}`
+        const stateHash = oh.MD5(state());
+        const key =`${stateHash}_${id}`
         if(!dictionary[constructorFunction.name]) {
             dictionary[constructorFunction.name] = Object.create(null);
         }

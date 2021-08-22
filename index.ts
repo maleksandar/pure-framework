@@ -1,19 +1,26 @@
 import { BehaviorSubject } from 'rxjs';
-import { nameSelector, appState$, state, updateState } from './appState';
+import { AppState } from './appState';
 import { bootstrap } from './core/bootstrap';
-import { testElement } from './TestElement';
-import { testState, testStateSubject, testState$ } from './TestState';
 import { div, h1 } from './functional-templates/block-elements';
 import { wrapper } from './WrapperElement';
 import { person } from './PersonElement';
+import { Store } from './core/store';
 
-const appRoot = document.getElementById('app');
-const app = testElement(testState);
-bootstrap(appRoot, app, testState$);
+const store = new Store<AppState>({
+    firstName: 'Aleksandar',
+    lastName: 'Milosavljevic',
+    address: {
+        street: 'VP',
+        number: 56
+    },
+    additionalAddress: {
+        street: 'VP',
+        number: 56
+    }
+});
 
-
-const app2Root = document.getElementById('app2');
-const app2 = 
+const domRoot = document.getElementById('app');
+const app = 
         div([
             h1({class:'red'},[
                 'Neki Veliki naslov',
@@ -21,10 +28,10 @@ const app2 =
                 'Nastavak naslova',
             ]).onClick(() => {
                 console.log("klikn'o si na heder. bravo.");
-                updateState({lastName: "Petronijevic"})
+                store.updateState({lastName: "Petronijevic"})
             }),
-            wrapper(nameSelector),
-            person(state),
+            wrapper(() => store.state.firstName),
+            person(() => store.state),
             div({class: 'red'}, [
                 'html',
                 div('izmedju'),
@@ -32,7 +39,11 @@ const app2 =
             ]),
             div('Ovaj div ima samo text')
         ]);
-bootstrap(app2Root, app2, appState$);
 
+bootstrap(domRoot, app, store.state$);
 
-window.store = testStateSubject;
+function updateFirstName(name: string) {
+    store.updateState({firstName: name})
+}
+
+window.updateFirstName = updateFirstName;
