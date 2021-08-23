@@ -1,4 +1,4 @@
-export { bootstrap } from "./bootstrap";
-export { Store } from './Store';
-export { Component } from './Component';
-export { componentFactory } from './ComponentFactory';
+export * from "./bootstrap";
+export * from './Store';
+export * from './Component';
+export * from './ComponentFactory';
