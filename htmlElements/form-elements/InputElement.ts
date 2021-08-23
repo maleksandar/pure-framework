@@ -3,16 +3,23 @@ import { DomAttachments } from '../../core/DomAttachments';
 
 export class InputElement extends DomAttachments<InputElement> implements FunctionalElement {
     public domElement: HTMLInputElement;
+    public parentDomElement: HTMLElement;
 
     constructor(protected attributes: {}, private _tag?) {
         super();
     }
+    children?: FunctionalElement[];
 
     render(): HTMLElement {
         this.createDomElement();
         this.assignAttributes();
         this.attachEventHandlers();
         return this.domElement;
+    }
+
+    forceReRender() {
+        let domElementToReplace = this.domElement;
+        this.parentDomElement.replaceChild(this.render(), domElementToReplace);
     }
 
     private assignAttributes(): void {
@@ -25,6 +32,5 @@ export class InputElement extends DomAttachments<InputElement> implements Functi
 
     private createDomElement(): void {
         this.domElement = document.createElement(this._tag);
-
     }
 }

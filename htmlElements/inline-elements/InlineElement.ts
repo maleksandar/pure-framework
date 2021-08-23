@@ -4,6 +4,7 @@ import { TextElement } from './TextElement';
 
 export abstract class InlineElement extends DomAttachments<InlineElement> implements FunctionalElement {
     public domElement: HTMLElement;
+    public parentDomElement: HTMLElement;
 
     constructor(protected attributes?: {}, protected _children?: (InlineElement | TextElement)[], private _tag?) {
         super();
@@ -29,6 +30,11 @@ export abstract class InlineElement extends DomAttachments<InlineElement> implem
         return this.domElement;
     }
 
+    forceReRender() {
+        let domElementToReplace = this.domElement;
+        this.parentDomElement.replaceChild(this.render(), domElementToReplace);
+    }
+
     private assignAttributes(): void {
         if (this.attributes) {
             Object.keys(this.attributes).forEach(attribute => {
@@ -43,6 +49,7 @@ export abstract class InlineElement extends DomAttachments<InlineElement> implem
             return;
         }
         this.children.forEach(child => {
+            child.parentDomElement = this.domElement;
             this.domElement.appendChild(child.render());
         });
     }

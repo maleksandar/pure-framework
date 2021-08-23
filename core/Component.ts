@@ -7,8 +7,9 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
     abstract template(): FunctionalElement;
     protected inputState: () => ModelType = () =>null;
     previousState: ModelType;
-
+    
     domElement: HTMLElement | Text = null;
+    parentDomElement: HTMLElement;
     _template: FunctionalElement = null;
 
     get state() {

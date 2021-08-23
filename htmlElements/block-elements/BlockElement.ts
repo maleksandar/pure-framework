@@ -3,7 +3,8 @@ import { DomAttachments } from '../../core/DomAttachments';
 
 export abstract class BlockElement extends DomAttachments<BlockElement> implements FunctionalElement {
     public domElement: HTMLElement;
-
+    public parentDomElement: HTMLElement;
+    
     constructor(protected attributes: {}, protected _children: FunctionalElement[], private _tag) {
         super();
         if (arguments.length === 2) {
@@ -28,6 +29,11 @@ export abstract class BlockElement extends DomAttachments<BlockElement> implemen
         return this.domElement;
     }
 
+    forceReRender() {
+        let domElementToReplace = this.domElement;
+        this.parentDomElement.replaceChild(this.render(), domElementToReplace);
+    }
+
     private assignAttributes(): void {
         if (this.attributes) {
             Object.keys(this.attributes).forEach(attribute => {
@@ -42,6 +48,7 @@ export abstract class BlockElement extends DomAttachments<BlockElement> implemen
             return;
         }
         this.children.forEach(child => {
+            child.parentDomElement = this.domElement;
             this.domElement.appendChild(child.render());
         });
     }
