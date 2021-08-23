@@ -39,7 +39,6 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
     }
 
     private rerenderDomElement() {
-        console.log('RENDERING ELEMENT WITH STATE: ', this.state);
         this.domElement = this.template().render();
     }
 

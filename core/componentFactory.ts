@@ -4,8 +4,8 @@ type FunctionalComponentConstructor<ModelType> = { new (state: () => ModelType):
 
 const dictionary = Object.create(null);
 
-export function componentFactory<ModelType>(constructorFunction: FunctionalComponentConstructor<ModelType>)
-    : (state: () => ModelType, id?: number | string) => Component<ModelType> {
+export function componentFactory<ExtendedType extends Component<ModelType>, ModelType>(constructorFunction: FunctionalComponentConstructor<ModelType>)
+    : (state: () => ModelType, id?: number | string) => ExtendedType  {
     return (state: () => ModelType, id: number | string = 0) => {
         const stateHash = oh.MD5(state());
         const key =`${stateHash}_${id}`
@@ -17,6 +17,6 @@ export function componentFactory<ModelType>(constructorFunction: FunctionalCompo
             dictionary[constructorFunction.name][key] = new constructorFunction(state);
         }
 
-        return dictionary[constructorFunction.name][key] as Component<ModelType> ;
+        return dictionary[constructorFunction.name][key] as ExtendedType ;
     };
 };

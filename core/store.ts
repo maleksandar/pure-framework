@@ -2,11 +2,9 @@ import { BehaviorSubject, Observable } from "rxjs";
 
 export class Store<Model> {
     private _stateSubject: BehaviorSubject<Model>;
-    private _state$: Observable<Model>;
 
     constructor(defaultState: Model) {
         this._stateSubject = new BehaviorSubject(defaultState);
-        this._state$ = this._stateSubject.asObservable();
     }
 
     updateState(newState: Partial<Model>) {
@@ -18,6 +16,6 @@ export class Store<Model> {
     }
 
     get state$() {
-        return this._state$;
+        return this._stateSubject.asObservable();
     }
 }

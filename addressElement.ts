@@ -1,7 +1,7 @@
 import { text } from "./htmlElements/inline-elements";
 import { div } from "./htmlElements/block-elements";
 import { Component } from "./core/Component";
-import { Address } from "./appState";
+import { Address } from "./person.store";
 import { componentFactory } from "./core/ComponentFactory";
 
 class AddressElement extends Component<Address> {

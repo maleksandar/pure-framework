@@ -1,7 +1,7 @@
 import { Component, componentFactory } from "./core";
 import { button, div, input, span } from "./htmlElements";
 
-import { store, ToDoState } from "./store";
+import { store, ToDoState } from "./todo.store";
 
 class ToDoListComponent extends Component<ToDoState> {
   template() {
@@ -64,4 +64,4 @@ class ToDoListComponent extends Component<ToDoState> {
   }
 }
 
-export const todoList = componentFactory(ToDoListComponent);
+export const todoList = componentFactory<ToDoListComponent, ToDoState>(ToDoListComponent);

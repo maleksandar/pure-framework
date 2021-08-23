@@ -1,11 +1,11 @@
 import { Component } from "./core/Component";
 import { div } from "./htmlElements/block-elements";
 import { address } from "./addressElement";
-import { componentFactory } from "./core;
-import { AppState } from "./appState";
+import { PersonModel } from "./person.store";
 import { InputElement } from "./htmlElements/block-elements/blockElementsFactory";
+import { componentFactory } from "./core";
 
-class Person extends Component<AppState> {
+class PersonComponent extends Component<PersonModel> {
     template () {
         return div(null, [
             ...nameElement(this.state.firstName, this.state.lastName),
@@ -14,8 +14,6 @@ class Person extends Component<AppState> {
                     console.log("Address clicked: ", this.state.address.street, " ", this.state.address.number)
                 }
                 ),
-            div('dodatna adresa:'),
-            address(() => this.state.additionalAddress, 'sporedna_adresa'),
         ]);
     }
 }
@@ -29,4 +27,4 @@ function nameElement(firstName: string, lastName: string): InputElement[] {
     ];
 }
 
-export const person = componentFactory(Person); 
+export const person = componentFactory<PersonComponent, PersonModel>(PersonComponent); 

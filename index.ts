@@ -1,9 +1,15 @@
 import { bootstrap } from './core';
 import { todoList } from './ToDoListComponent';
-import { store } from './store';
+import { store as todoStore } from './todo.store';
+import { store as personStore } from './person.store';
+import { person } from './PersonElement';
 
-const domRoot = document.getElementById('app');
-const app = todoList(() => store.state)
+const todoDomRoot = document.getElementById('todoApp');
+const todoApp = todoList(() => todoStore.state);
+bootstrap(todoDomRoot, todoApp, todoStore.state$);
 
-bootstrap(domRoot, app, store.state$);
 
+
+// const personDomRoot = document.getElementById('personApp');
+// const personApp = person(() => personStore.state);
+// bootstrap(personDomRoot, personApp, personStore.state$);
