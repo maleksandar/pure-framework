@@ -32,12 +32,6 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
         return areEqual(this.inputState(), this.previousState) && this.domElement;
     }
 
-    private attachEventHandlers() {
-        if (this.clickHandlers) {
-            this.clickHandlers.forEach(handler => this.domElement.addEventListener('click', handler));
-        }
-    }
-
     private rerenderDomElement() {
         this.domElement = this.template().render();
     }

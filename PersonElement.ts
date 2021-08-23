@@ -10,7 +10,7 @@ class PersonComponent extends Component<PersonModel> {
         return div(null, [
             ...nameElement(this.state.firstName, this.state.lastName),
             address(() => this.state.address, 'glavna_adresa')
-                .onClick(() => {
+                .on('click', () => {
                     console.log("Address clicked: ", this.state.address.street, " ", this.state.address.number)
                 }
                 ),

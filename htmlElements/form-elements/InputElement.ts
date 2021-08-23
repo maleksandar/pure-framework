@@ -15,12 +15,6 @@ export class InputElement extends DomAttachments<InputElement> implements Functi
         return this.domElement;
     }
 
-    private attachEventHandlers(): void {
-        if (this.clickHandlers) {
-            this.clickHandlers.forEach(handler => this.domElement.addEventListener('click', handler));
-        }
-    }
-
     private assignAttributes(): void {
         if (this.attributes) {
             Object.keys(this.attributes).forEach(attribute => {

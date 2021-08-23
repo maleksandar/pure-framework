@@ -1,5 +1,5 @@
 import { inlineElementFactory } from "./inlineElementsFactory";
-import { InputTextElement } from "../form-elements/form-elements/InputTextElement";
+import { ItalicElement } from "./ItalicElement";
 import { SpanElement } from "./SpanElement";
 import { TextElement } from "./TextElement";
 
@@ -8,3 +8,4 @@ export function text(string) {
 }
 
 export const span = inlineElementFactory(SpanElement);
+export const italic = inlineElementFactory(ItalicElement);
