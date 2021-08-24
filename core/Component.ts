@@ -16,7 +16,7 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
     }
 
     render() {
-        if (this.stateIsUnchanged()) {
+        if (this.stateIsUnchanged() && this.domElement) {
             return this.domElement;
         }
 
@@ -28,7 +28,7 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
     };
 
     private stateIsUnchanged() {
-        return areEqual(this.inputState(), this.previousState) && this.domElement;
+        return areEqual(this.inputState(), this.previousState);
     }
 
     private savePreviousState() {
