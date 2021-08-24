@@ -1,4 +1,4 @@
-import { FunctionalElement } from '../../core/FunctionalElement';
+import { FunctionalElement } from '../../core/functionalElement';
 export class TextElement implements FunctionalElement {
     domElement: Text;
     parentDomElement: HTMLElement;

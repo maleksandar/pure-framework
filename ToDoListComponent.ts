@@ -1,7 +1,7 @@
 import { Component, componentFactory } from "./core";
 import { button, div, header, inputText, italic, li, span, ul } from "./htmlElements";
-import { BlockElement } from "./htmlElements/block-elements/BlockElement";
-import { ButtonElement } from "./htmlElements/block-elements/ButtonElement";
+import { BlockElement } from "./htmlElements/block-elements/blockElement";
+import { ButtonElement } from "./htmlElements/block-elements/buttonElement";
 
 import { store } from "./stores/todo.store";
 import { ToDoState } from "./models"

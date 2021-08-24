@@ -1,10 +1,10 @@
 import { blockElementFactory } from "./blockElementsFactory";
-import { ButtonElement } from "./ButtonElement";
-import { DivElement } from "./DivElement";
-import { H1Element } from "./H1Element";
-import { HeaderElement } from "./HeaderElement";
-import { LiElement } from "./LiElement";
-import { UlElement } from "./UlElement";
+import { ButtonElement } from "./buttonElement";
+import { DivElement } from "./divElement";
+import { H1Element } from "./h1Element";
+import { HeaderElement } from "./headerElement";
+import { LiElement } from "./liElement";
+import { UlElement } from "./ulElement";
 
 export const div = blockElementFactory(DivElement);
 export const h1 = blockElementFactory(H1Element);

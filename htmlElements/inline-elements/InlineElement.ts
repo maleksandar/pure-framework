@@ -1,6 +1,6 @@
-import { FunctionalElement } from '../../core/FunctionalElement';
-import { DomAttachments } from '../../core/DomAttachments';
-import { TextElement } from './TextElement';
+import { FunctionalElement } from '../../core/functionalElement';
+import { DomAttachments } from '../../core/domAttachments';
+import { TextElement } from './textElement';
 
 export abstract class InlineElement extends DomAttachments<InlineElement> implements FunctionalElement {
     public domElement: HTMLElement;

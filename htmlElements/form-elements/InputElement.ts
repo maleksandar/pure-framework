@@ -1,5 +1,5 @@
-import { FunctionalElement } from '../../core/FunctionalElement';
-import { DomAttachments } from '../../core/DomAttachments';
+import { FunctionalElement } from '../../core/functionalElement';
+import { DomAttachments } from '../../core/domAttachments';
 
 export class InputElement extends DomAttachments<InputElement> implements FunctionalElement {
     public domElement: HTMLInputElement;

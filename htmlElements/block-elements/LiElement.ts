@@ -1,5 +1,5 @@
-import { FunctionalElement } from '../../core/FunctionalElement';
-import { BlockElement } from './BlockElement';
+import { FunctionalElement } from '../../core/functionalElement';
+import { BlockElement } from './blockElement';
 
 export class LiElement extends BlockElement {
     domElement: HTMLHeadingElement;

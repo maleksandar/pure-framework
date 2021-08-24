@@ -1,5 +1,5 @@
-import { FunctionalElement } from "../../core/FunctionalElement";
-import { BlockElement } from "./BlockElement";
+import { FunctionalElement } from "../../core/functionalElement";
+import { BlockElement } from "./blockElement";
 import { text } from "../inline-elements";
 
 export type InputElement = FunctionalElement | string;

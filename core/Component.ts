@@ -1,5 +1,5 @@
-import { FunctionalElement } from "./FunctionalElement";
-import { DomAttachments } from "./DomAttachments";
+import { FunctionalElement } from "./functionalElement";
+import { DomAttachments } from "./domAttachments";
 import { areEqual, cloneDeep } from "../utils";
 import { Store } from "./store";
 
