@@ -5,13 +5,14 @@ import { ButtonElement } from "./htmlElements/block-elements/ButtonElement";
 
 import { store } from "./stores/todo.store";
 import { ToDoState } from "./models"
+import { html } from "./core";
 
 class ToDoListComponent extends Component<ToDoState> {
   template() {
     return div({ class: 'wrapper' }, [
       ...this.todoHeader(),
       this.todoSegment(),
-      this.doneSegment()
+      this.doneSegment(),
     ]);
   }
 
@@ -40,7 +41,7 @@ class ToDoListComponent extends Component<ToDoState> {
     store.updateState(this.state);
   }
 
-  private todoHeader(): BlockElement[] {
+  private todoHeader() {
     const todoInput = inputText({ name: 'listItem', id: 'listInput', placeholder:"Add your new todo" })
       .on('keyup', () => {
         this.updateAddTaskBtnAttributes(todoInput.domElement.value)
