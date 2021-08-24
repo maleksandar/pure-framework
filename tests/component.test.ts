@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 import { bootstrap, Store } from "../core";
-import { Component } from "../core/Component";
-import { FunctionalElement } from "../core/FunctionalElement";
+import { Component } from "../core/component";
+import { FunctionalElement } from "../core/functionalElement";
 import { div } from "../htmlElements/block-elements";
 import { JSDOM } from 'jsdom';
 import { BehaviorSubject, Observable } from "rxjs";

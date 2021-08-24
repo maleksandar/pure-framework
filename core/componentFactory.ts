@@ -1,5 +1,5 @@
 import oh from 'object-hash';
-import { Component } from './Component';
+import { Component } from './component';
 type FunctionalComponentConstructor<ModelType> = { new (state: () => ModelType): Component<ModelType>; }
 
 const dictionary = Object.create(null);

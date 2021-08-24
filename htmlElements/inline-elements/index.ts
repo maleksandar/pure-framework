@@ -1,7 +1,7 @@
 import { inlineElementFactory } from "./inlineElementsFactory";
-import { ItalicElement } from "./ItalicElement";
-import { SpanElement } from "./SpanElement";
-import { TextElement } from "./TextElement";
+import { ItalicElement } from "./italicElement";
+import { SpanElement } from "./spanElement";
+import { TextElement } from "./textElement";
 
 export function text(string) {
     return new TextElement(string);

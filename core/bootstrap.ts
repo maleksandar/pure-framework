@@ -1,5 +1,5 @@
-import { Component } from "./Component";
-import { Store } from "./Store";
+import { Component } from "./component";
+import { Store } from "./store";
 /**
  * 
  * @param domRoot DOM root node to attach your Pure app to. 

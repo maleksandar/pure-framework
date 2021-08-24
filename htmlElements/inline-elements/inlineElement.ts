@@ -1,11 +1,12 @@
-import { FunctionalElement } from '../../core/FunctionalElement';
-import { DomAttachments } from '../../core/DomAttachments';
+import { FunctionalElement } from '../../core/functionalElement';
+import { DomAttachments } from '../../core/domAttachments';
+import { TextElement } from './textElement';
 
-export abstract class BlockElement extends DomAttachments<BlockElement> implements FunctionalElement {
+export abstract class InlineElement extends DomAttachments<InlineElement> implements FunctionalElement {
     public domElement: HTMLElement;
     public parentDomElement: HTMLElement;
-    
-    constructor(protected attributes: {}, protected _children: FunctionalElement[], private _tag) {
+
+    constructor(protected attributes?: {}, protected _children?: (InlineElement | TextElement)[], private _tag?) {
         super();
         if (arguments.length === 2) {
             // in case attributes object is provided as a first argument
@@ -13,7 +14,7 @@ export abstract class BlockElement extends DomAttachments<BlockElement> implemen
             this._children = arguments[1];
         }
         else if (arguments.length === 1) {
-            // in case we are provided with only one argument - we asume it is the array of children or a single child
+            // in case only element cointains only children
             this._children = arguments[0];
         }
     }
@@ -37,9 +38,7 @@ export abstract class BlockElement extends DomAttachments<BlockElement> implemen
     private assignAttributes(): void {
         if (this.attributes) {
             Object.keys(this.attributes).forEach(attribute => {
-                if(this.attributes[attribute]) {
-                    this.domElement.setAttribute(attribute, this.attributes[attribute]);
-                }
+                this.domElement.setAttribute(attribute, this.attributes[attribute]);
             });
         }
     }

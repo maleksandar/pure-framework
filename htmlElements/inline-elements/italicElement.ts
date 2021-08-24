@@ -1,5 +1,5 @@
-import { InlineElement } from './InlineElement';
-import { TextElement } from './TextElement';
+import { InlineElement } from './inlineElement';
+import { TextElement } from './textElement';
 
 export class ItalicElement extends InlineElement {
   domElement: HTMLHeadingElement;

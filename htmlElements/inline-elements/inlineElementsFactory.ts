@@ -1,7 +1,7 @@
 import { text } from ".";
-import { FunctionalElement } from "../../core/FunctionalElement";
-import { InlineElement } from "./InlineElement";
-import { TextElement } from "./TextElement";
+import { FunctionalElement } from "../../core/functionalElement";
+import { InlineElement } from "./inlineElement";
+import { TextElement } from "./textElement";
 
 export type InputElement = InlineElement | string | TextElement;
 

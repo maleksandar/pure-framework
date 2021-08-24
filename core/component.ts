@@ -1,7 +1,6 @@
-import { FunctionalElement } from "./FunctionalElement";
-import { DomAttachments } from "./DomAttachments";
+import { FunctionalElement } from "./functionalElement";
+import { DomAttachments } from "./domAttachments";
 import { areEqual, cloneDeep } from "../utils";
-import { Store } from "./Store";
 
 export abstract class Component<ModelType> extends DomAttachments<Component<ModelType>> implements FunctionalElement {
     abstract template(): FunctionalElement;
@@ -16,7 +15,7 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
     }
 
     render() {
-        if (this.stateIsUnchanged()) {
+        if (this.stateIsUnchanged() && this.domElement) {
             return this.domElement;
         }
 
@@ -28,7 +27,7 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
     };
 
     private stateIsUnchanged() {
-        return areEqual(this.inputState(), this.previousState) && this.domElement;
+        return areEqual(this.inputState(), this.previousState);
     }
 
     private savePreviousState() {

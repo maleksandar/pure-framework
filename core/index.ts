@@ -1,5 +1,5 @@
 export * from "./bootstrap";
-export * from "./Store";
-export * from "./Component";
-export * from "./ComponentFactory";
-export * from "./HTMLParser"
+export * from "./store";
+export { Component } from "./component";
+export { componentFactory } from "./componentFactory";
+export * from "./htmlParser"
