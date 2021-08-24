@@ -5,6 +5,7 @@ export abstract class DomAttachments<T> {
     this.eventHandlers.push({event, handlers});
     return <T><unknown>this;
   };
+
   protected attachEventHandlers(): void {
     if (this.eventHandlers) {
         this.eventHandlers.forEach(event => {
