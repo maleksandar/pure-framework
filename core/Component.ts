@@ -1,7 +1,6 @@
 import { FunctionalElement } from "./functionalElement";
 import { DomAttachments } from "./domAttachments";
 import { areEqual, cloneDeep } from "../utils";
-import { Store } from "./store";
 
 export abstract class Component<ModelType> extends DomAttachments<Component<ModelType>> implements FunctionalElement {
     abstract template(): FunctionalElement;
