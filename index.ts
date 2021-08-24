@@ -1,15 +1,5 @@
 import { bootstrap } from './core';
 import { todoList } from './ToDoListComponent';
-import { store as todoStore, ToDoState } from './todo.store';
-import { store as personStore } from './person.store';
-import { person } from './PersonElement';
+import { store } from './stores/todo.store';
 
-const todoDomRoot = document.getElementById('todoApp');
-const todoApp = todoList(() => todoStore.state);
-bootstrap<ToDoState>(todoDomRoot, todoApp, todoStore.state$);
-
-
-
-// const personDomRoot = document.getElementById('personApp');
-// const personApp = person(() => personStore.state);
-// bootstrap(personDomRoot, personApp, personStore.state$);
+bootstrap(document.getElementById('app'), todoList, store);

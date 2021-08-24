@@ -1,16 +1,15 @@
 import { FunctionalElement } from "./FunctionalElement";
 import { DomAttachments } from "./DomAttachments";
 import { areEqual, cloneDeep } from "../utils";
+import { Store } from "./Store";
 
 export abstract class Component<ModelType> extends DomAttachments<Component<ModelType>> implements FunctionalElement {
-    protected updateState: (newState: ModelType) => void;
     abstract template(): FunctionalElement;
     protected inputState: () => ModelType = () =>null;
     previousState: ModelType;
     
     domElement: HTMLElement | Text = null;
     parentDomElement: HTMLElement;
-    _template: FunctionalElement = null;
 
     get state() {
         return this.inputState();
@@ -22,19 +21,14 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
         }
 
         this.savePreviousState();
-        this.rerenderDomElement();
+        this.domElement = this.template().render();
         this.attachEventHandlers();
 
         return this.domElement;
     };
 
-
     private stateIsUnchanged() {
         return areEqual(this.inputState(), this.previousState) && this.domElement;
-    }
-
-    private rerenderDomElement() {
-        this.domElement = this.template().render();
     }
 
     private savePreviousState() {

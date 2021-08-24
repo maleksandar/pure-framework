@@ -3,7 +3,8 @@ import { button, div, header, inputText, italic, li, span, ul } from "./htmlElem
 import { BlockElement } from "./htmlElements/block-elements/BlockElement";
 import { ButtonElement } from "./htmlElements/block-elements/ButtonElement";
 
-import { store, ToDoState } from "./todo.store";
+import { store } from "./stores/todo.store";
+import { ToDoState } from "./models"
 
 class ToDoListComponent extends Component<ToDoState> {
   template() {

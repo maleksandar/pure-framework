@@ -34,9 +34,9 @@ beforeEach(() => {
 
 describe('bootstrap: ', () => {
   test('app is rerendered every time the state is changed', () => {
-    let mockApp = { render: jest.fn() }
+    let mockAppFactory = () => ({ render: jest.fn() })
     let domNode = { appendChild: jest.fn() }
-    bootstrap<TestStateModel>(domNode as unknown as HTMLElement, mockApp as unknown as Component<TestStateModel>, testState.state$);
+    let mockApp = bootstrap<TestStateModel>(domNode as unknown as HTMLElement, mockAppFactory as unknown as (state: () => TestStateModel) => Component<TestStateModel>, testState);
   
     expect(mockApp.render).toHaveBeenCalledTimes(1);
     testState.updateState({value: '1'});
@@ -50,7 +50,7 @@ describe('bootstrap: ', () => {
   
   test('the subtree in which there is no state change reuses the old dom node', () => {
     let domNode = document.getElementById('test')
-    bootstrap(domNode, app, testState.state$);
+    bootstrap(domNode, testElement, testState);
     let leftChildBeforeStateUpdate = app.leftChild;
     let rightChildBeforeStateUpdate = app.rightChild;
   

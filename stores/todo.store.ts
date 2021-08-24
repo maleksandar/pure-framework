@@ -1,9 +1,5 @@
-import { Store } from "./core";
-
-
-export interface ToDoState {
-  todoList: string[];
-}
+import { Store } from "../core";
+import { ToDoState } from "../models";
 
 export const store = new Store<ToDoState>({
   todoList: [

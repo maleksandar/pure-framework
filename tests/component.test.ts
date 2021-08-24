@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { bootstrap } from "../core";
+import { bootstrap, Store } from "../core";
 import { Component } from "../core/Component";
 import { FunctionalElement } from "../core/FunctionalElement";
 import { div } from "../htmlElements/block-elements";
@@ -29,9 +29,10 @@ test('Component tests', () => {
 test('click handlers work', () => {
   let callback = jest.fn();
   let c = (new ConcreteComponent(() => 1)).on('click', callback);
+  let componentFactory = (state: () => {}) => c;
 
   let domRoot = document.body;
-  bootstrap<number>(domRoot, c, new BehaviorSubject<number>(1))
+  bootstrap<number>(domRoot, componentFactory, new Store<number>(12))
 
   let event = new Event('click');
   c.domElement.dispatchEvent(event);
