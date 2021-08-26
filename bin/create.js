@@ -16,6 +16,7 @@ const appName = args[0];// first argument
 if(!appName) {
   console.log('You need to provide an app name in order to scaffold the files. For example: npx pure-framework hello-world-app');
   // exit
+  return;
 }
 cp.execSync(`mkdir ${appName}`);
 cp.execSync(`git clone https://github.com/maleksandar/pure-framework-hello-world-app.git ${appName}`);
