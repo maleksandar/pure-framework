@@ -2,6 +2,7 @@
 .cache/
 node_modules/
 dist/
-.parcel-cache/data.mdb
-.parcel-cache/lock.mdb
-.parcel-cache/cc001662b4fa88d5.txt
+.parcel-cache/
+models/
+tests/
+stores/
