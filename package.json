@@ -14,7 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "object-hash": "^2.0.3",
     "rfdc": "^1.1.4",
     "rxjs": "^6.5.5"
