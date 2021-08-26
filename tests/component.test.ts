@@ -4,7 +4,7 @@
 import { bootstrap, Store } from "../core";
 import { Component } from "../core/component";
 import { FunctionalElement } from "../core/functionalElement";
-import { div } from "../htmlElements/block-elements";
+import { div } from "../html/block-elements";
 import { JSDOM } from 'jsdom';
 import { BehaviorSubject, Observable } from "rxjs";
 

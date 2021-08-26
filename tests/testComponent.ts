@@ -1,6 +1,6 @@
 import { Component, componentFactory } from "../core";
 import { FunctionalElement } from "../core/FunctionalElement";
-import { div } from "../htmlElements";
+import { div } from "../html";
 import { TestStateModel } from "./testState";
 
 export class TestComponent extends Component<TestStateModel> {

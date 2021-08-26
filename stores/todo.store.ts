@@ -3,9 +3,9 @@ import { ToDoState } from "../models";
 
 export const store = new Store<ToDoState>({
   todoList: [
-      'first',
-      'second',
-      'third',
-      'forth',
+      'Kupi mleko',
+      'Odvezi auto kod majstora',
+      'Napiši master rad',
+      'Odbrani master rad',
   ]
 });
