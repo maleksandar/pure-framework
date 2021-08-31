@@ -4,17 +4,18 @@ import { ItalicElement } from "./elements/italicElement";
 import { SpanElement } from "./elements/spanElement";
 import { TextElement } from "./elements/textElement";
 
-type ChildrenNormalizedType = InlineElement | TextElement;
-type ChildrenInputType = InlineElement | TextElement | string;
-type InlineElementConstuructor = { new(attributes: {}, _children: ChildrenNormalizedType[]): ChildrenNormalizedType };
 
-const inlineElementFactory = (inlineElementConstructor: InlineElementConstuructor ) => {
-    return coreElementFactory<ChildrenInputType, ChildrenNormalizedType>(inlineElementConstructor)
+type ChildrenInputType = InlineElement | string;
+type InlineElementConstuructor<ChildrenNormalizedType extends InlineElement> =
+  { new(attributes: {}, _children: ChildrenNormalizedType[]): ChildrenNormalizedType };
+
+
+function inlineElementFactory<ChildrenNormalizedType extends InlineElement>(blockElementConstuructor: InlineElementConstuructor<ChildrenNormalizedType>) {
+  return coreElementFactory<ChildrenInputType, ChildrenNormalizedType>(blockElementConstuructor);
 }
-
 export function text(string) {
     return new TextElement(string);
 }
 
-export const span = inlineElementFactory(SpanElement);
-export const italic = inlineElementFactory(ItalicElement);
+export const span = inlineElementFactory<SpanElement>(SpanElement);
+export const italic = inlineElementFactory<ItalicElement>(ItalicElement);

@@ -1,4 +1,3 @@
-import { InputElement } from "./elements/inputElement";
 import { InputTextElement } from "./elements/inputTextElement";
 import { SubmitElement } from "./elements/submitElement";
 

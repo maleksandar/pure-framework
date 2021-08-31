@@ -7,20 +7,19 @@ import { UlElement } from "./elements/ulElement";
 import { coreElementFactory } from "../../core/coreElementsFactory";
 import { FunctionalElement } from "../../core/functionalElement";
 
-type ChildrenNormalizedType = FunctionalElement 
 type ChildrenInputType = FunctionalElement | string;
-type BlockElementConstuructor = { new(attributes: {}, _children: ChildrenNormalizedType[]): ChildrenNormalizedType };
+type BlockElementConstuructor<ChildrenNormalizedType extends FunctionalElement> =
+  { new(attributes: {}, _children: ChildrenNormalizedType[]): ChildrenNormalizedType };
 
 
-const blockElementFactory = (blockElementConstuructor: BlockElementConstuructor ) => {
+function blockElementFactory<ChildrenNormalizedType extends FunctionalElement>(blockElementConstuructor: BlockElementConstuructor<ChildrenNormalizedType>) {
   return coreElementFactory<ChildrenInputType, ChildrenNormalizedType>(blockElementConstuructor);
 }
 
-export const div = blockElementFactory(DivElement);
-export const h1 = blockElementFactory(H1Element);
-export const button = blockElementFactory(ButtonElement);
-export const header = blockElementFactory(HeaderElement);
-export const ul = blockElementFactory(UlElement);
-export const li = blockElementFactory(LiElement);
-
+export const div = blockElementFactory<DivElement>(DivElement);
+export const h1 = blockElementFactory<H1Element>(H1Element);
+export const button = blockElementFactory<ButtonElement>(ButtonElement);
+export const header = blockElementFactory<HeaderElement>(HeaderElement);
+export const ul = blockElementFactory<UlElement>(UlElement);
+export const li = blockElementFactory<LiElement>(LiElement);
 
