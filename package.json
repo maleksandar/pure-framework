@@ -1,6 +1,6 @@
 {
   "name": "pure-framework",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "pure is a function js framework for writing simple applications using flux-like pattern.",
   "licenses": [],
   "bin": {
