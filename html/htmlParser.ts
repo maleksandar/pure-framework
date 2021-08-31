@@ -1,4 +1,4 @@
-import { FunctionalElement } from "./functionalElement";
+import { FunctionalElement } from "../core/functionalElement";
 
 class HTMLParser implements FunctionalElement {
   render(){

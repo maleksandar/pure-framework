@@ -4,11 +4,11 @@
 import { bootstrap, componentFactory, Store } from "../core";
 import { Component } from "../core/component";
 import { FunctionalElement } from "../core/functionalElement";
-import { div } from "../html/block-elements";
+import { div } from "../html/block";
 import { JSDOM } from 'jsdom';
 import { BehaviorSubject, Observable } from "rxjs";
 import { coreElementFactory } from "../core/coreElementsFactory";
-import { DivElement } from "../html/block-elements/divElement";
+import { DivElement } from "../html/block/elements/divElement";
 import { text } from "../html";
 
 beforeEach(() => {

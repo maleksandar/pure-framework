@@ -1,5 +1,5 @@
 import { FunctionalElement } from "../core/functionalElement";
-import { TextElement } from "../html/inline-elements/textElement";
+import { TextElement } from "../html/inline/elements/textElement";
 
 export function coreElementFactory<InputType extends FunctionalElement | string, OutputType extends FunctionalElement>(HtmlConstructorType: { new(attributes: {}, _children: OutputType[]): OutputType}) {
     return (function C (...args: [{}, InputType[]] | [InputType[]] | [InputType]) {

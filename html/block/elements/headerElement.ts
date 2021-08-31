@@ -1,6 +1,5 @@
-import { FunctionalElement } from '../../core/functionalElement';
-import { Observable } from 'rxjs';
-import { BlockElement } from './blockElement';
+import { FunctionalElement } from '../../../core/functionalElement';
+import { BlockElement } from '../blockElement';
 
 export class HeaderElement extends BlockElement {
     domElement: HTMLHeadingElement;

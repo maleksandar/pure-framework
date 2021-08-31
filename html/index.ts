@@ -1,4 +1,4 @@
-export * from './block-elements';
-export * from './inline-elements';
-export * from './form-elements';
-
+export * from './block';
+export * from './inline';
+export * from './form';
+export * from './htmlParser';

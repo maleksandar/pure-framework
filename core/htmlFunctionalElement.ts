@@ -1,4 +1,4 @@
-import { TextElement } from "html/inline-elements/textElement";
+import { TextElement } from "html/inline/textElement";
 import { EventListening } from "./eventListening";
 import { EventListeningBehaviour } from "./eventListeningBehaviour";
 import { FunctionalElement } from "./functionalElement";

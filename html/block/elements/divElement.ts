@@ -1,5 +1,5 @@
-import { FunctionalElement } from '../../core/functionalElement';
-import { BlockElement } from './blockElement';
+import { FunctionalElement } from '../../../core/functionalElement';
+import { BlockElement } from '../blockElement';
 
 export class DivElement extends BlockElement {
     domElement: HTMLDivElement;

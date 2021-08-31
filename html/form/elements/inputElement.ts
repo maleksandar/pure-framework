@@ -1,6 +1,6 @@
-import { EventListening } from '../../core/eventListening';
-import { EventListeningBehaviour } from '../../core/eventListeningBehaviour';
-import { FunctionalElement } from '../../core/functionalElement';
+import { EventListening } from '../../../core/eventListening';
+import { EventListeningBehaviour } from '../../../core/eventListeningBehaviour';
+import { FunctionalElement } from '../../../core/functionalElement';
 
 export class InputElement implements FunctionalElement, EventListening {
     public domElement: HTMLInputElement;

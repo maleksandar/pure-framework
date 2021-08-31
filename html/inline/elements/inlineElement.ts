@@ -1,4 +1,4 @@
-import { HTMLFunctionalElement } from '../../core/htmlFunctionalElement';
+import { HTMLFunctionalElement } from '../../../core/htmlFunctionalElement';
 import { TextElement } from './textElement';
 
 export type InlineOutputElement = InlineElement | TextElement;
