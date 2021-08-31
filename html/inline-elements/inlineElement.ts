@@ -1,56 +1,12 @@
-import { FunctionalElement } from '../../core/functionalElement';
-import { DomAttachments } from '../../core/domAttachments';
+import { BaseFunctionalElement } from '../../core/baseFunctionalElement';
 import { TextElement } from './textElement';
 
-export abstract class InlineElement extends DomAttachments<InlineElement> implements FunctionalElement {
-    public domElement: HTMLElement;
-    public parentDomElement: HTMLElement;
+export type InlineOutputElement = InlineElement | TextElement;
+export type InlineInputElement = InlineElement | TextElement | string;
+export type InlineElementConstructor = { new(attributes: {}, _children: InlineOutputElement[]): InlineOutputElement}
 
-    constructor(protected attributes?: {}, protected _children?: (InlineElement | TextElement)[], private _tag?) {
-        super();
-        if (arguments.length === 2) {
-            // in case attributes object is provided as a first argument
-            this.attributes = arguments[0];
-            this._children = arguments[1];
-        }
-        else if (arguments.length === 1) {
-            // in case only element cointains only children
-            this._children = arguments[0];
-        }
-    }
-
-    get children(): FunctionalElement[] {
-        return this._children;
-    }
-
-    render(): HTMLElement {
-        this.createDomElement();
-        this.assignAttributes();
-        this.attachEventHandlers();
-        return this.domElement;
-    }
-
-    forceReRender() {
-        let domElementToReplace = this.domElement;
-        this.parentDomElement.replaceChild(this.render(), domElementToReplace);
-    }
-
-    private assignAttributes(): void {
-        if (this.attributes) {
-            Object.keys(this.attributes).forEach(attribute => {
-                this.domElement.setAttribute(attribute, this.attributes[attribute]);
-            });
-        }
-    }
-
-    private createDomElement(): void {
-        this.domElement = document.createElement(this._tag);
-        if(!this.children || this.children.length === 0) {
-            return;
-        }
-        this.children.forEach(child => {
-            child.parentDomElement = this.domElement;
-            this.domElement.appendChild(child.render());
-        });
+export abstract class InlineElement extends BaseFunctionalElement {
+    constructor(protected attributes: {}, protected _children: InlineOutputElement[], protected _tag) {
+        super(attributes,_children, _tag );
     }
 }

@@ -1,10 +1,12 @@
 import { FunctionalElement } from "./functionalElement";
-import { DomAttachments } from "./domAttachments";
+import { EventListeningBehaviour } from "./eventListeningBehaviour";
 import { areEqual, cloneDeep } from "../utils";
+import { EventListening } from "./eventListening";
 
-export abstract class Component<ModelType> extends DomAttachments<Component<ModelType>> implements FunctionalElement {
+export abstract class Component<ModelType>  implements FunctionalElement, EventListening {
     abstract template(): FunctionalElement;
-    protected inputState: () => ModelType = () =>null;
+    protected inputState: () => ModelType = () => null;
+    private _eventListeningExecutor: EventListeningBehaviour = null;
     previousState: ModelType;
     
     domElement: HTMLElement | Text = null;
@@ -24,8 +26,8 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
         this.attachEventHandlers();
 
         return this.domElement;
-    };
-
+    }
+    
     private stateIsUnchanged() {
         return areEqual(this.inputState(), this.previousState);
     }
@@ -35,8 +37,17 @@ export abstract class Component<ModelType> extends DomAttachments<Component<Mode
     }
 
     constructor(inputState: () => ModelType) {
-        super();
+        this._eventListeningExecutor = new EventListeningBehaviour(this);
         this.inputState = inputState;
+    }
+
+    on(event: keyof HTMLElementEventMap, ...handlers: ((event: Event) => void)[]) {
+        this._eventListeningExecutor.on(event, ...handlers);
+        return this;
+    }
+
+    private attachEventHandlers() {
+        this._eventListeningExecutor.attachEventHandlers();
     }
 
     get children() {

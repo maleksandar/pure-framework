@@ -17,7 +17,6 @@ class HTMLParser implements FunctionalElement {
   constructor(private htmlText) {
     
   }
-
 }
 
 export const html = (htmlText) => new HTMLParser(htmlText);

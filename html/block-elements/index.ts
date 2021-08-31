@@ -1,16 +1,16 @@
-import { blockElementFactory } from "./blockElementsFactory";
 import { ButtonElement } from "./buttonElement";
 import { DivElement } from "./divElement";
 import { H1Element } from "./h1Element";
 import { HeaderElement } from "./headerElement";
 import { LiElement } from "./liElement";
 import { UlElement } from "./ulElement";
+import { coreElementFactory } from "../../core/coreElementsFactory";
 
-export const div = blockElementFactory(DivElement);
-export const h1 = blockElementFactory(H1Element);
-export const button = blockElementFactory(ButtonElement);
-export const header = blockElementFactory(HeaderElement);
-export const ul = blockElementFactory(UlElement);
-export const li = blockElementFactory(LiElement);
+export const div = coreElementFactory(DivElement);
+export const h1 = coreElementFactory(H1Element);
+export const button = coreElementFactory(ButtonElement);
+export const header = coreElementFactory(HeaderElement);
+export const ul = coreElementFactory(UlElement);
+export const li = coreElementFactory(LiElement);
 
 

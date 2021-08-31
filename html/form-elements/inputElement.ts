@@ -1,12 +1,13 @@
+import { EventListening } from 'core/eventListening';
+import { EventListeningBehaviour } from 'core/eventListeningBehaviour';
 import { FunctionalElement } from '../../core/functionalElement';
-import { DomAttachments } from '../../core/domAttachments';
 
-export class InputElement extends DomAttachments<InputElement> implements FunctionalElement {
+export class InputElement implements FunctionalElement, EventListening {
     public domElement: HTMLInputElement;
     public parentDomElement: HTMLElement;
+    private _eventListeningExecutor: EventListeningBehaviour = null;
 
     constructor(protected attributes: {}, private _tag?) {
-        super();
     }
     children?: FunctionalElement[];
 
@@ -16,6 +17,16 @@ export class InputElement extends DomAttachments<InputElement> implements Functi
         this.attachEventHandlers();
         return this.domElement;
     }
+
+    on(event: keyof HTMLElementEventMap, ...handlers: ((event: Event) => void)[]) {
+        this._eventListeningExecutor.on(event, ...handlers);
+        return this;
+      }
+    
+      private attachEventHandlers() {
+          this._eventListeningExecutor.attachEventHandlers();
+      }
+    
 
     forceReRender() {
         let domElementToReplace = this.domElement;
