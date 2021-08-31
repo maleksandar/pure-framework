@@ -1,12 +1,15 @@
 /**
  * @jest-environment jsdom
  */
-import { bootstrap, Store } from "../core";
+import { bootstrap, componentFactory, Store } from "../core";
 import { Component } from "../core/component";
 import { FunctionalElement } from "../core/functionalElement";
 import { div } from "../html/block-elements";
 import { JSDOM } from 'jsdom';
 import { BehaviorSubject, Observable } from "rxjs";
+import { coreElementFactory } from "../core/coreElementsFactory";
+import { DivElement } from "../html/block-elements/divElement";
+import { text } from "../html";
 
 beforeEach(() => {
   const DEFAULT_HTML = `<html><body><div id="test"></div></body></html>`;
@@ -38,4 +41,18 @@ test('click handlers work', () => {
   c.domElement.dispatchEvent(event);
 
   expect(callback).toHaveBeenLastCalledWith(event);
-})
+});
+
+test('coreElementsFactory works', () => {
+  let div = coreElementFactory<FunctionalElement, FunctionalElement>(DivElement);
+  let divElement = div([text("text")]);
+
+  divElement.render();
+});
+
+test('componentFactory works', () => {
+  let cF = componentFactory<ConcreteComponent, number>(ConcreteComponent);
+  let cE = cF(() => 1);
+
+  cE.render();
+});

@@ -1,5 +1,5 @@
-import { EventListening } from 'core/eventListening';
-import { EventListeningBehaviour } from 'core/eventListeningBehaviour';
+import { EventListening } from '../../core/eventListening';
+import { EventListeningBehaviour } from '../../core/eventListeningBehaviour';
 import { FunctionalElement } from '../../core/functionalElement';
 
 export class InputElement implements FunctionalElement, EventListening {
@@ -8,6 +8,7 @@ export class InputElement implements FunctionalElement, EventListening {
     private _eventListeningExecutor: EventListeningBehaviour = null;
 
     constructor(protected attributes: {}, private _tag?) {
+        this._eventListeningExecutor = new EventListeningBehaviour(this);
     }
     children?: FunctionalElement[];
 

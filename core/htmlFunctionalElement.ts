@@ -3,7 +3,7 @@ import { EventListening } from "./eventListening";
 import { EventListeningBehaviour } from "./eventListeningBehaviour";
 import { FunctionalElement } from "./functionalElement";
 
-export abstract class BaseFunctionalElement implements FunctionalElement, EventListening {
+export abstract class HTMLFunctionalElement implements FunctionalElement, EventListening {
   public domElement: HTMLElement;
   public parentDomElement: HTMLElement;
   private _eventListeningExecutor: EventListeningBehaviour = null;

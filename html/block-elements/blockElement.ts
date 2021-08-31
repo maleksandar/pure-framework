@@ -1,7 +1,7 @@
 import { FunctionalElement } from '../../core/functionalElement';
-import { BaseFunctionalElement } from '../../core/baseFunctionalElement';
+import { HTMLFunctionalElement } from '../../core/htmlFunctionalElement';
 
-export abstract class BlockElement extends BaseFunctionalElement {
+export abstract class BlockElement extends HTMLFunctionalElement {
     constructor(protected attributes: {}, protected _children: FunctionalElement[], protected _tag) {
         super(attributes,_children, _tag );
     }
