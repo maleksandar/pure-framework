@@ -1,6 +1,6 @@
 export interface FunctionalElement {
-    render: () => HTMLElement | Text;
-    domElement: HTMLElement | Text;
-    children?: (FunctionalElement | Text)[];
-    parentDomElement: HTMLElement | null;
+    render: () => HTMLElement;
+    domElement: HTMLElement;
+    children?: FunctionalElement[];
+    parentDomElement: HTMLElement;
 }

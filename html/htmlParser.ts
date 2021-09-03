@@ -7,7 +7,7 @@ class HTMLParser implements FunctionalElement {
     this.domElement = htmlDoc.body;
     return htmlDoc.body.firstChild as unknown as HTMLElement;
   }
-  domElement: HTMLElement | Text;
+  domElement: HTMLElement;
   children?: FunctionalElement[];
   parentDomElement: HTMLElement;
 

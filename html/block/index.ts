@@ -11,7 +11,6 @@ type ChildrenInputType = FunctionalElement | string;
 type BlockElementConstuructor<ChildrenNormalizedType extends FunctionalElement> =
   { new(attributes: {}, _children: ChildrenNormalizedType[]): ChildrenNormalizedType };
 
-
 function blockElementFactory<ChildrenNormalizedType extends FunctionalElement>(blockElementConstuructor: BlockElementConstuructor<ChildrenNormalizedType>) {
   return coreElementFactory<ChildrenInputType, ChildrenNormalizedType>(blockElementConstuructor);
 }

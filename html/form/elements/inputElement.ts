@@ -19,7 +19,7 @@ export class InputElement implements FunctionalElement, EventListening {
         return this.domElement;
     }
 
-    on(event: keyof HTMLElementEventMap, ...handlers: ((event: Event) => void)[]) {
+    on(event: string, ...handlers: ((event: Event) => void)[]) {
         this._eventListeningExecutor.on(event, ...handlers);
         return this;
       }

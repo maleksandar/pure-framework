@@ -4,19 +4,30 @@ import { areEqual, cloneDeep } from "../utils";
 import { EventListening } from "./eventListening";
 
 export abstract class Component<ModelType>  implements FunctionalElement, EventListening {
-    abstract template(): FunctionalElement;
+    public domElement: HTMLElement = null;
+    public parentDomElement: HTMLElement = null;
+
     protected inputState: () => ModelType = () => null;
+
     private _eventListeningExecutor: EventListeningBehaviour = null;
-    previousState: ModelType;
-    
-    domElement: HTMLElement | Text = null;
-    parentDomElement: HTMLElement;
+    private previousState: ModelType = null;
+
+    constructor(inputState: () => ModelType) {
+        this._eventListeningExecutor = new EventListeningBehaviour(this);
+        this.inputState = inputState;
+    }
+
+    abstract template(): FunctionalElement;
 
     get state() {
         return this.inputState();
     }
 
-    render() {
+    get children() {
+        return this.template().children
+    }
+
+    public render() {
         if (this.stateIsUnchanged() && this.domElement) {
             return this.domElement;
         }
@@ -27,21 +38,8 @@ export abstract class Component<ModelType>  implements FunctionalElement, EventL
 
         return this.domElement;
     }
-    
-    private stateIsUnchanged() {
-        return areEqual(this.inputState(), this.previousState);
-    }
 
-    private savePreviousState() {
-        this.previousState = cloneDeep(this.inputState());
-    }
-
-    constructor(inputState: () => ModelType) {
-        this._eventListeningExecutor = new EventListeningBehaviour(this);
-        this.inputState = inputState;
-    }
-
-    on(event: keyof HTMLElementEventMap, ...handlers: ((event: Event) => void)[]) {
+    public on(event: string, ...handlers: ((event: Event) => void)[]) {
         this._eventListeningExecutor.on(event, ...handlers);
         return this;
     }
@@ -49,8 +47,12 @@ export abstract class Component<ModelType>  implements FunctionalElement, EventL
     private attachEventHandlers() {
         this._eventListeningExecutor.attachEventHandlers();
     }
+    
+    private stateIsUnchanged() {
+        return areEqual(this.inputState(), this.previousState);
+    }
 
-    get children() {
-        return this.template().children
+    private savePreviousState() {
+        this.previousState = cloneDeep(this.inputState());
     }
 };

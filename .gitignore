@@ -6,3 +6,7 @@ dist/
 models/
 tests/
 stores/
+src/
+*.svg
+index.ts
+index.html

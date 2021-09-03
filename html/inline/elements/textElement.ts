@@ -1,13 +1,13 @@
 import { FunctionalElement } from '../../../core/functionalElement';
 export class TextElement implements FunctionalElement {
-    domElement: Text;
-    parentDomElement: HTMLElement | null;
+    domElement: HTMLElement;
+    parentDomElement: HTMLElement;
 
     constructor(private text: string) {
         this.text = text;
     }
     render() {
-        this.domElement = document.createTextNode(this.text);
+        this.domElement = document.createTextNode(this.text) as unknown as HTMLElement;
         return this.domElement;
     }
 

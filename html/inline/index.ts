@@ -9,10 +9,10 @@ type ChildrenInputType = InlineElement | string;
 type InlineElementConstuructor<ChildrenNormalizedType extends InlineElement> =
   { new(attributes: {}, _children: ChildrenNormalizedType[]): ChildrenNormalizedType };
 
-
 function inlineElementFactory<ChildrenNormalizedType extends InlineElement>(blockElementConstuructor: InlineElementConstuructor<ChildrenNormalizedType>) {
   return coreElementFactory<ChildrenInputType, ChildrenNormalizedType>(blockElementConstuructor);
 }
+
 export function text(string) {
     return new TextElement(string);
 }

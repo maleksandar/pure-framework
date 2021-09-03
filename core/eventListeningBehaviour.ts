@@ -2,10 +2,10 @@ import { EventListening } from "./eventListening";
 import { FunctionalElement } from "./functionalElement";
 
 export class EventListeningBehaviour implements EventListening {
-  eventHandlers: { event: keyof HTMLElementEventMap; handlers: ((event: any) => any)[]; }[] = [];
-  constructor(private decorate: FunctionalElement) { }
+  private eventHandlers: { event: string; handlers: ((event: any) => any)[]; }[] = [];
+  constructor(private decoratedElement: FunctionalElement) { }
 
-  public on(event: keyof HTMLElementEventMap, ...handlers: ((event: Event) => void)[]) {
+  public on(event: string, ...handlers: ((event: Event) => void)[]) {
     this.eventHandlers.push({event, handlers});
     return this;
   };
@@ -14,7 +14,7 @@ export class EventListeningBehaviour implements EventListening {
     if (this.eventHandlers) {
         this.eventHandlers.forEach(event => {
             event.handlers.forEach(handler => {
-              this.decorate.domElement.addEventListener(event.event, handler);
+              this.decoratedElement.domElement.addEventListener(event.event, handler);
             });
         });
     }

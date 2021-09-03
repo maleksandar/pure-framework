@@ -7,7 +7,7 @@ export abstract class HTMLFunctionalElement implements FunctionalElement, EventL
   public parentDomElement: HTMLElement;
   private _eventListeningExecutor: EventListeningBehaviour = null;
 
-  constructor(protected attributes: {}, protected _children: FunctionalElement[], protected _tag) {
+  constructor(protected attributes: {}, protected _children: FunctionalElement[], protected _tag: string) {
     if (arguments.length === 2) {
       // in case attributes object is provided as a first argument
       this.attributes = arguments[0];
@@ -20,7 +20,7 @@ export abstract class HTMLFunctionalElement implements FunctionalElement, EventL
     this._eventListeningExecutor = new EventListeningBehaviour(this);
   }
 
-  on(event: keyof HTMLElementEventMap, ...handlers: ((event: Event) => void)[]) {
+  on(event: string, ...handlers: ((event: Event) => void)[]) {
     this._eventListeningExecutor.on(event, ...handlers);
     return this;
   }
