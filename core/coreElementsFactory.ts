@@ -1,4 +1,4 @@
-import { FunctionalElement } from "../core/functionalElement";
+import { FunctionalElement } from "./functionalElement";
 import { TextElement } from "../html/inline/elements/textElement";
 
 export function coreElementFactory

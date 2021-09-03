@@ -20,27 +20,23 @@ export abstract class HTMLFunctionalElement implements FunctionalElement, EventL
     this._eventListeningExecutor = new EventListeningBehaviour(this);
   }
 
-  on(event: string, ...handlers: ((event: Event) => void)[]) {
+  public on(event: string, ...handlers: ((event: Event) => void)[]) {
     this._eventListeningExecutor.on(event, ...handlers);
     return this;
   }
 
-  private attachEventHandlers() {
-      this._eventListeningExecutor.attachEventHandlers();
-  }
-
-  get children(): (FunctionalElement)[] {
+  public get children(): (FunctionalElement)[] {
     return this._children;
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.createDomElement();
     this.assignAttributes();
     this.attachEventHandlers();
     return this.domElement;
   }
 
-  forceReRender() {
+  public forceReRender() {
     let domElementToReplace = this.domElement;
     this.parentDomElement.replaceChild(this.render(), domElementToReplace);
   }
@@ -64,5 +60,9 @@ export abstract class HTMLFunctionalElement implements FunctionalElement, EventL
       child.parentDomElement = this.domElement;
       this.domElement.appendChild(child.render());
     });
+  }
+
+  private attachEventHandlers() {
+    this._eventListeningExecutor.attachEventHandlers();
   }
 }

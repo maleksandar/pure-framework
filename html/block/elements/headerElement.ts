@@ -1,7 +1,6 @@
-import { FunctionalElement } from '../../../core/functionalElement';
-import { BlockElement } from '../blockElement';
+import { HTMLFunctionalElement, FunctionalElement } from '../../../core';
 
-export class HeaderElement extends BlockElement {
+export class HeaderElement extends HTMLFunctionalElement {
     domElement: HTMLHeadingElement;
     constructor(protected attributes: {}, protected _children: FunctionalElement[]) {
         super(attributes, _children, 'header')
