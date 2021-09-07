@@ -1,4 +1,5 @@
 import { coreElementFactory } from "../../core/coreElementsFactory";
+import { AElement } from "./elements/aElement";
 import { InlineElement } from "./elements/inlineElement";
 import { ItalicElement } from "./elements/italicElement";
 import { SpanElement } from "./elements/spanElement";
@@ -18,4 +19,5 @@ export function text(string) {
 }
 
 export const span = inlineElementFactory<SpanElement>(SpanElement);
+export const a = inlineElementFactory<AElement>(AElement);
 export const italic = inlineElementFactory<ItalicElement>(ItalicElement);
