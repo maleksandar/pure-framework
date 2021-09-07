@@ -8,5 +8,5 @@ tests/
 stores/
 src/
 *.svg
-index.ts
+index-manual-testing-app.ts
 index.html
