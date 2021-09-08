@@ -1,7 +1,7 @@
 {
   "name": "pure-framework",
   "version": "0.4.3",
-  "description": "pure is a function js framework for writing simple applications using flux-like pattern.",
+  "description": "Pure-framework is a SPA frontend framework that uses TypeScript functions instead of HTML or JSX for view layer.",
   "licenses": [],
   "bin": {
     "pure-framework": "bin/create.js"
