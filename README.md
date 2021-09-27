@@ -36,7 +36,8 @@ The basic principles that this framework leverages are:
   - Observables (RxJs)
   - Type safety (TypeScript)
 
-Check out an example of the app writen using *pure-framework* on this [repo](https://github.com/maleksandar/pure-framework-todo-app).
+Check out an example of the app writen using *pure-framework* on this [repo](https://github.com/maleksandar/pure-framework-todo-app), or the [presentation](https://docs.google.com/presentation/d/e/2PACX-1vTARP-LlG3lQDed_w9IeUhgPtGn_iOP4itjJ7AlhTIlSRfcdnxYUN_ZWkUrtk5SdUfQjK5HkzK4ibhn/pub?start=false&loop=false&delayms=3000) about pure-framework (Serbian).
+
 
 ## License
 MIT License
